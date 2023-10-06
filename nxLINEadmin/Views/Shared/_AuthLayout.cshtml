@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - nxLINEadmin</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/app-creative.min.css" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/svg.css" asp-append-version="true" />
+</head>
+@using Microsoft.Extensions.Configuration
+@{
+    IConfiguration configuration = new ConfigurationBuilder()
+        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+        .AddJsonFile("appsettings.json")
+        .Build();
+}
+<body class="login-body justify-content-center">
+    <div class="login_container px-5">
+        <div class="card shadow w-100">
+            <div class="row no-gutters">
+                <div class="col-md-6 d-none d-sm-block">
+                    <img src="@configuration?["LoginSettings:LoginImagePath"]" alt="Login Image">
+                </div>
+                <div class="col-md-6 px-md-5 px-3">
+                    <div class="my-4">
+                        <img class="img-fluid px-5" src="@configuration?["LoginSettings:LogoPath"]">
+                        <hr>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>       
+</body>
+</html>
+@await RenderSectionAsync("Scripts", required: false)

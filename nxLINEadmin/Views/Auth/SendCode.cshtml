@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "パスワードをお忘れですか？";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+
+<form asp-action="SendCode">
+    <h3 class="my-3">メールアドレスを入力してください。</h3>
+
+    <div class="field form-group presmall">
+        <div asp-validation-summary="ModelOnly " class="text-danger"></div>
+        <label class="control-label">メールアドレス</label>
+        <input class="form-control form-control"
+               placeholder="" />
+        <span class="text-danger"></span>
+    </div>
+    <div class="actions">
+        <input type="submit" class="btn btn-primary btn-block" value="パスワード再設定メールを送信する" />
+    </div>
+</form>

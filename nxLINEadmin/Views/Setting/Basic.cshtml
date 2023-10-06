@@ -1,0 +1,300 @@
+@model nxLINEadmin.Model.SettingViewModel
+@{
+    ViewData["Title"] = "設定";
+}
+@section Css {
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="stylesheet" href="~/assets/vendor/daterangepicker/daterangepicker.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/custom.css" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
+          rel="stylesheet" />
+    <style type="text/css">
+        .bootstrap-tagsinput .tag {
+            margin-right: 2px;
+            color: white !important;
+            background-color: #0d6efd;
+            padding: 0.2rem;
+        }
+
+        .bootstrap-tagsinput {
+            width: 100%;
+            margin-bottom: 0.75rem;
+            padding: 0.45rem;
+        }
+
+        table.dataTable thead > tr > th.sorting {
+            text-align: center !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+    </style>
+}
+<div class="row my-2">
+    @if (ViewBag.errorType == "error")
+    {
+        <div class="alert alert-danger alert-dismissible text-bg-danger border-0 fade show" role="alert" id="alert-show">
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            @ViewBag.errorMsg
+        </div>
+    }
+
+    @if (ViewBag.errorType == "success")
+    {
+        <div class="alert alert-success alert-dismissible text-bg-success border-0 fade show" role="alert" id="alert-show">
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            @ViewBag.errorMsg
+        </div>
+    }
+</div>
+<div class="mt-3 d-flex justify-content-between align-items-center">
+    <h3 class="b-900 ml-2 mb-0"><i class="fa-solid fa-gear fa-lg text-main" aria-hidden="true"></i>&nbsp;基本情報</h3>
+    <div class="d-flex justify-content-start align-items-center">
+    </div>
+</div>
+<div class="container">
+    <form id="basic_info" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Account.LineaccountId" type="hidden" />
+        <input asp-for="Account.LineaccountCode" type="hidden" />
+        <input asp-for="Account.LineaccountShortcode" type="hidden" />
+        <input asp-for="Account.LineaccountCreated" type="hidden" />
+        <input asp-for="Account.ProfileSetting" type="hidden" />
+        <div class="form-group row my-0">
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.LineaccountName" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input asp-for="Account.LineaccountName" class="form-control" />
+                        <span asp-validation-for="Account.LineaccountName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.LineaccountEmail" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input asp-for="Account.LineaccountEmail" class="form-control" />
+                        <span asp-validation-for="Account.LineaccountEmail" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.EntryPoint" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group flex-nowrap">
+                            <input asp-for="Account.EntryPoint" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text" id="basic-addon1">ポイント</span>
+                        </div>
+                        <span asp-validation-for="Account.EntryPoint" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.StartRank" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group flex-nowrap">
+                            <input asp-for="Account.StartRank" class="form-control" aria-label="Username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2">％</span>
+                        </div>
+                        <span asp-validation-for="Account.StartRank" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.PointExpire" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group flex-nowrap">
+                            <input asp-for="Account.PointExpire" class="form-control" aria-label="Username" aria-describedby="basic-addon3">
+                            <span class="input-group-text" id="basic-addon3">日</span>
+                        </div>
+                        <span asp-validation-for="Account.PointExpire" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.MembersCardColor" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="color" asp-for="Account.MembersCardColor" class="form-control" />
+                        <span asp-validation-for="Account.MembersCardColor" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.SmaregiContractId" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input asp-for="Account.SmaregiContractId" class="form-control" />
+                        <span asp-validation-for="Account.SmaregiContractId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.MembersCardLiffId" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input asp-for="Account.MembersCardLiffId" class="form-control" />
+                        <span asp-validation-for="Account.MembersCardLiffId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.LineChannelId" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input asp-for="Account.LineChannelId" class="form-control" />
+                        <span asp-validation-for="Account.LineChannelId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.LineChannelSecret" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input asp-for="Account.LineChannelSecret" class="form-control" />
+                        <span asp-validation-for="Account.LineChannelSecret" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.LineChannelAccessToken" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input asp-for="Account.LineChannelAccessToken" class="form-control" />
+                        <span asp-validation-for="Account.LineChannelAccessToken" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.TalkMessage" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea class="form-control" rows="3" asp-for="Account.TalkMessage">@Model.Account.TalkMessage</textarea>
+                        <span asp-validation-for="Account.TalkMessage" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.IsSmaregi" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="checkbox" id="switch3" data-switch="primary" asp-for="Account.IsSmaregi" />
+                        <label for="switch3" data-on-label="On" data-off-label="Off"></label>
+                        <span asp-validation-for="Account.IsSmaregi" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.Istalk" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="checkbox" id="switch0" data-switch="primary" asp-for="Account.Istalk" />
+                        <label for="switch0" data-on-label="On" data-off-label="Off"></label>
+                        <span asp-validation-for="Account.Istalk" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.IsProfile" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="checkbox" id="switch1" data-switch="primary" asp-for="Account.IsProfile" />
+                        <label for="switch1" data-on-label="On" data-off-label="Off"></label>
+                        <span asp-validation-for="Account.IsProfile" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.MembersCardIsUseCamera" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="checkbox" id="switch2" data-switch="primary" asp-for="Account.MembersCardIsUseCamera" />
+                        <label for="switch2" data-on-label="On" data-off-label="Off"></label>
+                        <span asp-validation-for="Account.MembersCardIsUseCamera" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-1 col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.MembersCardDesignUrl" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="setting-img">
+                            <img src="@(Model.Account.MembersCardDesignUrl ?? nxLINEadmin.Controllers.SettingController.noImgUrl)" style="height:200px;" />
+                        </div>
+                        <input class="form-control mt-2" type="file" name="cardDesign">
+                        <span asp-validation-for="Account.MembersCardDesignUrl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-2 col-4 mt-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label asp-for="Account.LineaccountLogoUrl" class="control-label"></label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="setting-img">
+                            <img src="@(Model.Account.LineaccountLogoUrl ?? nxLINEadmin.Controllers.SettingController.noImgUrl)" style="height:200px;" />
+                        </div>
+                        <input class="form-control mt-2" type="file" name="logoImg">
+                        <span asp-validation-for="Account.LineaccountLogoUrl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="form-group row my-4">
+        <div class="offset-5 col-2">
+            <button class="btn btn-primary" style="width: 100%;" id="basic_info_submit">保存</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/setting.js" ></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

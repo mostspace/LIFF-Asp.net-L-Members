@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "ログアウト";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="30;URL=/" /> 
+    <title>@ViewData["Title"] - 宿予約台帳</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CouponApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>ログアウトしました。30秒後にログイン画面に遷移します。</div>
+                    <div>
+                        <a asp-controller="Auth" asp-action="Login">ログイン</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

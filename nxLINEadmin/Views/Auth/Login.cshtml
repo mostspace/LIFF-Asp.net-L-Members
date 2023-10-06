@@ -1,0 +1,35 @@
+﻿@model nxLINEadmin.Model.LoginUserViewModel
+
+@{
+    ViewData["Title"] = "ログイン";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+
+<form asp-action="Login" asp-route-returnUrl="@ViewBag.ReturnUrl">
+    <h3 class="my-3">ログイン</h3>
+    <div class="field form-group presmall">
+        <div asp-validation-summary="ModelOnly " class="text-danger"></div>
+        <label class="control-label">メールアドレス</label>
+        <input asp-for="UserLoginId" class="form-control" class="form-control form-control"
+                placeholder="" />
+        <span asp-validation-for="UserLoginId" class="text-danger"></span>
+    </div>
+    <div class="field form-group presmall">
+        <label class="form-label" for="form3Example4">パスワード</label>
+        <input asp-for="Password" type="password" class="form-control form-control"
+                placeholder="" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="actions">
+        <input type="submit" class="btn btn-primary btn-block" value="ログイン" />
+    </div>
+    @* <div class="text-center w-100 my-4">
+        <a asp-action="Register">新規登録</a>
+    </div> *@
+    <div class="text-center w-100 my-4">
+        <a asp-action="ForGot">パスワードをお忘れですか？</a>
+    </div>
+    
+</form>

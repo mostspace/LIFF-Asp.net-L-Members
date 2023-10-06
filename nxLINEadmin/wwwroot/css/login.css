@@ -1,0 +1,32 @@
+﻿body {
+    font-family: 'Noto Sans JP', "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+}
+
+.login_container {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.presmall {
+    font-size: 0.9rem;
+}
+
+input.btn-block[type="submit"], input.btn-block[type="reset"], input.btn-block[type="button"] {
+    width: 100%;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+

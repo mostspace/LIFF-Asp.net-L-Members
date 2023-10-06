@@ -1,0 +1,322 @@
+@model nxLINEadmin.ViewModels.MemberViewModel
+@{
+    ViewData["Title"] = "顧客一覧";
+}
+@section Css {
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="stylesheet" href="~/assets/vendor/daterangepicker/daterangepicker.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/custom.css" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
+          rel="stylesheet" />
+    <style type="text/css">
+        .bootstrap-tagsinput .tag {
+            margin-right: 2px;
+            color: white !important;
+            background-color: #0d6efd;
+            padding: 0.2rem;
+        }
+
+        .bootstrap-tagsinput {
+            width: 100%;
+            margin-bottom: 0.75rem;
+            padding: 0.45rem;
+        }
+
+        table.dataTable thead > tr > th.sorting {
+            text-align: center !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+    </style>
+}
+<div class="my-4 d-flex justify-content-between align-items-center">
+    <h3 class="b-900 ml-2 mb-0"><i class="fad fa-list-ul text-main" aria-hidden="true"></i>&nbsp;取引履歴</h3>
+    <div class="d-flex justify-content-start align-items-center">
+        <a href="/customers.csv?q[register_date_null]=true" class="btn btn-gray btn-sm py-2 px-4 rounded-pill ms-2"><i class="fas fa-cloud-download-alt" aria-hidden="true"></i>&nbsp;&nbsp;CSVインポート</a>
+        <a href="/customers.csv?q[register_date_null]=true" class="btn btn-gray btn-sm py-2 px-4 rounded-pill ms-2"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;新規取引登録</a>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-4">
+        <div class="card mb-md-0 mb-3">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-3 d-flex align-items-center">
+                        <label class="form-label mb-0">データ件数</label>
+                    </div>
+                    <div class="col-md-9 row">
+                        <div class="col-auto">
+                            <select class="form-select">
+                                <option value="10">10 件</option>
+                                <option value="25">25 件</option>
+                                <option value="50">50 件</option>
+                            </select>
+                        </div>
+                        <div class="col-auto d-flex align-items-center">
+                            1 - 10
+                        </div>
+                        <div class="col-auto">
+                            <nav>
+                                <ul class="pagination mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2 row">
+                    <div class="col-md-3 align-self-center">
+                        <label for="member_code" class="form-label mb-0">会員番号</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" id="member_code" class="form-control">
+                    </div>
+                </div>
+                <div class="mb-2 row">
+                    <div class="col-md-3 align-self-center">
+                        <label for="member_name" class="form-label mb-0">顧客名</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" id="member_name" class="form-control">
+                    </div>
+                </div>
+                <div class="mb-2 row">
+                    <div class="col-md-3 align-self-center">
+                        <label for="kana" class="form-label mb-0">合計金額</label>
+                    </div>
+                    <div class="col-9">
+                        <div class="align-items-center d-flex justify-content-start">
+                        <input class="form-control" type="number" name="q[use_point_gteq]" id="q_use_point_gteq">
+                        <span class="mx-2">〜</span>
+                        <input class="form-control" type="number" name="q[use_point_lteq]" id="q_use_point_lteq">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2 row">
+                    <div class="col-md-3 align-self-center">
+                        <label for="kana" class="form-label mb-0">利用ポイント</label>
+                    </div>
+                    <div class="col-9">
+                        <div class="align-items-center d-flex justify-content-start">
+                        <input class="form-control" type="number" name="q[use_point_gteq]" id="q_use_point_gteq">
+                        <span class="mx-2">〜</span>
+                        <input class="form-control" type="number" name="q[use_point_lteq]" id="q_use_point_lteq">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2 row">
+                    <div class="col-md-3 align-self-center">
+                        <label for="kana" class="form-label mb-0">還元ポイント</label>
+                    </div>
+                    <div class="col-9">
+                        <div class="align-items-center d-flex justify-content-start">
+                        <input class="form-control" type="number" name="q[use_point_gteq]" id="q_use_point_gteq">
+                        <span class="mx-2">〜</span>
+                        <input class="form-control" type="number" name="q[use_point_lteq]" id="q_use_point_lteq">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2 row">
+                    <div class="col-md-3 align-self-center">
+                        <label for="kana" class="form-label mb-0">登録日</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control date" id="join_date" value="" data-toggle="date-picker" data-cancel-class="btn-warning">
+                    </div>
+                </div>
+                <div class="mb-2 text-right">
+                    <button type="button" class="btn btn-outline-success rounded-pill" id="btn_search"><i class="mdi mdi-account-search"></i> 検索</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card mb-md-0 mb-3">
+            <div class="card-body">
+                <div class="row table-responsive">
+                    <table class="table mb-0 data-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">会員番号</th>
+                                <th scope="col">顧客名</th>
+                                <th scope="col">小計</th>
+                                <th scope="col">利用ポイント</th>
+                                <th scope="col">合計</th>
+                                <th scope="col">還元ポイント</th>
+                                <th scope="col">登録日</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/assets/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/assets/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    <script>
+        const locale_datetimepicker = {
+            format: 'YYYY年MM月DD日',
+            "daysOfWeek": [
+                "日",
+                "月",
+                "火",
+                "水",
+                "木",
+                "金",
+                "土"
+            ],
+            "monthNames": [
+                "1月",
+                "2月",
+                "3月",
+                "4月",
+                "5月",
+                "6月",
+                "7月",
+                "8月",
+                "9月",
+                "10月",
+                "11月",
+                "12月"
+            ],
+            clear: "クリア"
+        };
+        $(function () {
+            $('#join_date').daterangepicker({
+                showDropdowns: false,
+                locale: locale_datetimepicker
+            });
+        });
+        var tbl_check = document.getElementById("table-all-check");
+        tbl_check.onclick = () => {
+            var row_checks = document.querySelectorAll(".card-body table .row-check")
+            for (let i = 0; i < row_checks.length; i++) {
+                row_checks[i].checked = tbl_check.checked;
+            }
+        }
+        var table_data = [];
+        var dataTable;
+        $(document).ready(() => {
+            let url = `https://localhost:7116/api/Members/search`
+            join_date.value = ""
+            fetch(url).then(res => res.json()).then(res => {
+                if (res) {
+                    table_data = res;
+                    dataTable = $(".data-table").DataTable({
+                        bPaginate: false,
+                        bFilter: false,
+                        bInfo: false,
+                        bSortable: true,
+                        bRetrieve: true,
+                        aaSorting: [[1, 'asc']],
+                        data: table_data,
+                        columnDefs: [
+                            { orderable: false, targets: 0 }
+                        ],
+                        columns: [
+                            {
+                                data: null, render: function (data, type, row) {
+                                    return '<input type="checkbox" class="row-check" />';
+                                }, className: "text-center"
+                            },
+                            { data: 'member_code', className: "text-right" },
+                            {
+                                data: null, render: function (data, type, row) {
+                                    return row.member_lastname + " " + row.member_firstname;
+                                }, className: "text-center"
+                            },
+                            { data: 'member_rank', className: "text-right" },
+                            { data: 'member_hold_point', className: "text-right" },
+                            {
+                                data: null, render: function (data, type, row) {
+                                    return formatDate(row.member_join_date);
+                                }, className: "text-right"
+                            },
+                            {
+                                data: null, render: function (data, type, row) {
+                                    return '<i class="fa-2x fa-brands fa-line"></i>';
+                                }, className: "text-center"
+                            }
+                        ]
+                    });
+                }
+            }).catch(e => {
+                alert(e)
+            })
+        })
+        btn_search.onclick = () => {
+            var dateRangeString = $('#join_date').val();
+            var dateArray = ["",""];
+            if (dateRangeString != undefined && dateRangeString != "") {
+                dateRangeString = dateRangeString.replaceAll("年", "-");
+                dateRangeString = dateRangeString.replaceAll("月", "-");
+                dateRangeString = dateRangeString.replaceAll("日", "");
+                dateRangeString.replaceAll(" ", "");
+                dateArray = dateRangeString.split(" - ");
+            }
+
+            gender = "";
+            if(gender1.checked == true) {
+                gender += "1,"
+            }
+            if (gender2.checked == true) {
+                gender += "2,"
+            }
+            if (gender.endsWith(",")) {
+                // Remove the last character using slice()
+                gender = gender.slice(0, -1);
+            }
+
+            let url = `https://localhost:7116/api/Members/search?member_code=${member_code.value}
+            &name=${member_name.value}&kana=${kana.value}&year=${year.value}&month=${month.value}&day=${day.value}
+            &gender=${gender}&phone=${phone.value}&email=${email.value}&join_date_start=${dateArray[0]}
+            &join_date_end=${dateArray[1]}&tage=${tage.value}`;
+            fetch(url).then(res => res.json()).then(res => {
+                table_data = res;
+                dataTable.clear().rows.add(table_data).draw();
+            }).catch(e => {
+                alert(e)
+            })
+        }
+        
+        function formatDate(inputDateStr) {
+            // Parse the input date string
+            const inputDate = new Date(inputDateStr);
+
+            // Get the year, month, and day components
+            const year = inputDate.getFullYear();
+            const month = inputDate.getMonth() + 1; // Months are zero-indexed
+            const day = inputDate.getDate();
+
+            // Format the date as "YYYY年MM月DD日"
+            const formattedDate = `${year}年${month.toString().padStart(2, '0')}月${day.toString().padStart(2, '0')}日`;
+
+            return formattedDate;
+        }
+
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

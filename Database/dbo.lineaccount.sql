@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[lineaccount] (
+    [lineaccount_id]          INT             IDENTITY (1, 1) NOT NULL,
+    [lineaccount_code]        NVARCHAR (100)  COLLATE Japanese_CI_AS NOT NULL,
+    [lineaccount_shortcode]   NVARCHAR (5)    COLLATE Japanese_CI_AS NOT NULL,
+    [lineaccount_name]        NVARCHAR (50)   COLLATE Japanese_CI_AS NULL,
+    [lineaccount_email]       NVARCHAR (200)  COLLATE Japanese_CI_AS NOT NULL,
+    [istalk]                  BIT             NULL,
+    [talkmessage]             NVARCHAR (MAX)  COLLATE Japanese_CI_AS NULL,
+    [isprofile]               BIT             NULL,
+    [profile_setting]         NVARCHAR (MAX)  COLLATE Japanese_CI_AS NULL,
+    [entrypoint]              INT             NULL,
+    [startrank]               INT             NULL,
+    [pointexpire]             INT             NULL,
+    [memberscard_color]       NVARCHAR (10)   COLLATE Japanese_CI_AS NULL,
+    [memberscard_designurl]   NVARCHAR (1000) COLLATE Japanese_CI_AS NULL,
+    [memberscard_isusecamera] BIT             NULL,
+    [memberscard_liffid]      NVARCHAR (20)   COLLATE Japanese_CI_AS NULL,
+    [line_channelid]          NVARCHAR (10)   COLLATE Japanese_CI_AS NULL,
+    [line_channelsecret]      NVARCHAR (50)   COLLATE Japanese_CI_AS NULL,
+    [line_channelaccesstoken] NVARCHAR (200)  COLLATE Japanese_CI_AS NULL,
+    [issmaregi]               BIT             NULL,
+    [smaregi_contractid]      NVARCHAR (20)   COLLATE Japanese_CI_AS NULL,
+    [lineaccount_logourl]     NVARCHAR (1000) COLLATE Japanese_CI_AS NULL,
+    [lineaccount_created]     DATETIME2 (7)   NULL,
+    [lineaccount_updated]     DATETIME2 (7)   NULL,
+    [lineaccount_deleted]     DATETIME2 (7)   NULL
+);
+

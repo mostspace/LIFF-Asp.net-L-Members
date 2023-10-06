@@ -1,0 +1,49 @@
+.b-900 {
+    font-weight: 900;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+}
+
+.text-num {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.rounded-icon {
+    display: inline-block;
+    border-radius: 60px;
+    padding: 0.8em 0.9em;
+    background-color: #e9ecef;
+}
+
+.border-left {
+    border-left: 1px solid #dee2e6 !important;
+}
+
+.border-right {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.btn-gray {
+    background-color: #E8E8E8;
+    color: #007bff;
+    font-weight: 500;
+}
+
+.btn-gray:hover {
+    background-color: #e8e8e8;
+}
+
+html[data-layout=topnav] .topnav .nav-item .nav-link, html[data-layout=topnav] .topnav .nav-item>a {
+    color: #e4eaf1 !important;
+}
+
+html[data-layout=topnav] .topnav .nav-item .nav-link:hover, html[data-layout=topnav] .topnav .nav-item:hover>a {
+    color: #bcc8d6 !important;
+}
+
+.setting-img {
+    display: flex;
+    justify-content: center;
+    background-color: #fefefe;
+    border: 1px solid #e3e3e3;
+}

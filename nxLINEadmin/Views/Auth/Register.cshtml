@@ -1,0 +1,49 @@
+﻿@model nxLINEadmin.Model.RegisterUserViewModel
+
+@{
+    ViewData["Title"] = "ログイン";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<form asp-action="Register" asp-route-returnUrl="@ViewBag.ReturnUrl" class="custom-validation">
+    <h3 class="my-4 ">新規登録</h3>
+    <div class="field form-group presmall">
+        <div asp-validation-summary="ModelOnly " class="text-danger"></div>
+        <label class="control-label">ログインID</label>
+        <input asp-for="UserLoginId" class="form-control" class="form-control form-control"
+                />
+        <span asp-validation-for="UserLoginId" class="text-danger"></span>
+    </div>
+    <div class="field form-group presmall">
+        <div asp-validation-summary="ModelOnly " class="text-danger"></div>
+        <label class="control-label">ユーザー名</label>
+        <input asp-for="UserName" class="form-control" class="form-control form-control"
+                />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="field form-group presmall">
+        <div asp-validation-summary="ModelOnly " class="text-danger"></div>
+        <label class="control-label">ログイン Email</label>
+        <input asp-for="UserEmail" class="form-control" class="form-control form-control"
+                />
+        <span asp-validation-for="UserEmail" class="text-danger"></span>
+    </div>
+    <div class="field form-group presmall">
+        <label class="form-label" for="form3Example4">パスワード</label>
+        <input asp-for="UserPwd" type="password" class="form-control form-control"
+            />
+        <span asp-validation-for="UserPwd" class="text-danger"></span>
+    </div>
+    <div class="field form-group presmall">
+        <label class="form-label" for="form3Example4">パスワード確認</label>
+        <input asp-for="UserRePwd" type="password" class="form-control form-control"
+                />
+        <span asp-validation-for="UserRePwd" class="text-danger"></span>
+    </div>
+    <div class="actions">
+        <input type="submit" class="btn btn-primary btn-block py-3" value="新規登録" />
+    </div>
+    <div class="text-center w-100 my-4">
+        <a asp-action="Login">ログインする</a>
+    </div>
+</form>

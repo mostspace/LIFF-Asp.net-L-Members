@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="jp" data-layout="topnav">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>@ViewData["Title"] - nxLINEadmin</title>
+
+    <!-- Theme Config Js -->
+    <script src="~/assets/js/hyper-config.js"></script>
+
+    <!-- App css -->
+    <link href="~/assets/css/app-creative.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+    <!-- Icons css -->
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" type="text/css" />
+
+    <!-- Custom css -->
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+    <style>
+        .container-fluid {
+            max-width: 99% !important;
+        }
+
+    </style>
+    @await RenderSectionAsync("Css", required: false)
+</head>
+<body>
+    <!-- Begin page -->
+    <div class="wrapper">
+        <!-- ========== Topbar Start ========== -->
+        <div class="navbar-custom">
+            <div class="topbar container-fluid">
+                <div class="d-flex align-items-center gap-lg-2 gap-1">
+                    <!-- Topbar Brand Logo -->
+                    <div class="logo-topbar">
+                        <!-- Logo light -->
+                        <a href="index.html" class="logo-light">
+                            <span class="logo-lg">
+                                <img src="/images/wide_logo.png" alt="logo">
+                            </span>
+                            <span class="logo-sm">
+                                <img src="assets/images/logo-sm.png" alt="small logo">
+                            </span>
+                        </a>
+
+                        <!-- Logo Dark -->
+                        <a href="index.html" class="logo-dark">
+                            <span class="logo-lg">
+                                <img src="/images/wide_logo.png" alt="dark logo">
+                            </span>
+                            <span class="logo-sm">
+                                <img src="assets/images/logo-dark-sm.png" alt="small logo">
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- Sidebar Menu Toggle Button -->
+                    <button class="button-toggle-menu">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                    <!-- Horizontal Menu Toggle Button -->
+                    <button class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                </div>
+                <ul class="topbar-menu d-flex align-items-center gap-3">
+                    <li class="d-none d-sm-inline-block">
+                        <div class="nav-link" id="light-dark-mode" data-bs-toggle="tooltip" data-bs-placement="left" title="Theme Mode">
+                            <i class="ri-moon-line font-22"></i>
+                        </div>
+                    </li>
+                    <li class="d-md-inline-block">
+                        <a asp-controller="Auth" asp-action="Logout" class="dropdown-item">
+                            <i class="mdi mdi-logout font-22"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- ========== Topbar End ========== -->
+        <!-- ========== Horizontal Menu Start ========== -->
+        <div class="topnav">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="collapse navbar-collapse" id="topnav-menu-content">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index" id="topnav-dashboards" role="button">
+                                    <i class="fad fa-analytics fa-lg"></i>ダッシュボード
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="customers" asp-action="Index" id="topnav-dashboards" role="button">
+                                    <i class="fad fa-users fa-lg"></i>顧客管理
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="TradingHistory" asp-action="Index" id="topnav-dashboards" role="button">
+                                    <i class="fad fa-list-ul fa-lg"></i>取引履歴
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index" id="topnav-dashboards" role="button">
+                                    <i class="fa-duotone fa-ticket fa-lg"></i>クーポン
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index" id="topnav-dashboards" role="button">
+                                    <i class="fad fa-poll-people fa-lg"></i>アンケート一覧
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-mdb-toggle="dropdown" id="navbarDropdown" aria-expanded="false" role="button">
+                                    <i class="fa-solid fa-gear fa-lg"></i>設定
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Setting" asp-action="Basic" id="action1">基本情報</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Home"  id="action2">会員登録設定</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Customers" id="action3">権限設定</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <!-- container -->
+
+            </div>
+            <!-- content -->
+            <!-- Footer Start -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <script>document.write(new Date().getFullYear())</script> © Hyper - Coderthemes.com
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-md-end footer-links d-none d-md-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- end Footer -->
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- Vendor js -->
+    <script src="~/assets/js/vendor.min.js"></script>
+    <!-- App js -->
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

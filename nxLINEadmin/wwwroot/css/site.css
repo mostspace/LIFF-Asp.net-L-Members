@@ -1,0 +1,20 @@
+﻿body {
+    font-family: 'Noto Sans JP', "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.icon-px {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+.text-right{
+    text-align: right !important;
+}
+
+.content-page {
+    min-height: calc(100vh - var(--ct-topbar-height) - var(--ct-footer-height) - 2px) !important;
+}
