@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using nxLINEadminAPI.Entity;
+using System.Text;
 
 namespace nxLINEadminAPI.Controllers
 {
@@ -37,9 +41,10 @@ namespace nxLINEadminAPI.Controllers
 
         // GET: api/Members
         [HttpGet("search")]
-        public async Task<ActionResult<IEnumerable<Member>>> SearchMember(String? lineId, String? code,
-            String? name, String? kana, int? year, int? month, int? day, String? gender,
-            String? phone, String? email, String? join_date_start, String? join_date_end, String? tags)
+        public async Task<ActionResult<IEnumerable<Member>>> SearchMember(String? member_code, String? code,
+            String? name, String? kana, int? year, int? month, int? day, String? gender, String? phone,
+            String? email, String? join_date_start, String? join_date_end, int? point_start, int? point_end,
+            String? tag_include, String? tag_except)
         {
             if (_context.Member == null)
             {
@@ -47,10 +52,10 @@ namespace nxLINEadminAPI.Controllers
             }
             var members = from m in _context.Member
                           select m;
-            if (lineId != null)
+            if (member_code != null)
             {
-                lineId = lineId.Trim();
-                members = members.Where(s => s.member_lineid!.Contains(lineId!));
+                member_code = member_code.Trim();
+                members = members.Where(s => s.member_code!.Contains(member_code!));
             }
             if (code != null)
             {
@@ -104,14 +109,48 @@ namespace nxLINEadminAPI.Controllers
                 join_date_end = join_date_end.Trim();
                 members = members.Where(s => s.member_join_date!.Value < DateTime.ParseExact(join_date_end, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
             }
-            if (tags != null)
+            if(point_start != null)
             {
-                tags = tags.Trim();
-                members = members.Where(s => s.member_tag!.Contains(tags!));
+                members = members.Where(s => s.member_hold_point >= point_start);
+            }
+            if(point_end != null)
+            {
+                members = members.Where(s => s.member_hold_point <= point_end);
+            }
+            if (tag_include != null)
+            {
+                tag_include = tag_include.Trim();
+                string[] tags = tag_include.Split(',');
+                foreach (string tag in tags)
+                {
+                    members = members.Where(s => s.member_tag!.Contains(tag!));
+                }
+            }
+            if (tag_except != null)
+            {
+                tag_except = tag_except.Trim();
+                string[] tags = tag_except.Split(',');
+                foreach (string tag in tags)
+                {
+                    members = members.Where(s => !s.member_tag!.Contains(tag!));
+                }
             }
 
             return await members.ToListAsync();
         }
+
+        // GET: api/Members/lineid_csv_download
+        [HttpGet("lineid_csv_download")]
+        public IActionResult LineIdCSVDownload()
+        {
+            string csvContent = "Name,Email,Phone\nJohn Doe,johndoe@example.com,1234567890\nJane Smith,janesmith@example.com,0987654321";
+
+            byte[] csvBytes = Encoding.UTF8.GetBytes(csvContent);
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=myfile.csv");
+
+            return File(csvBytes, "text/csv");            
+        } 
 
         // GET: api/Members/5
         [HttpGet("{id}")]

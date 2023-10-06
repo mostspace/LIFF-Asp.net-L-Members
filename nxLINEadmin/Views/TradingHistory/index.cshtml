@@ -9,31 +9,6 @@
     <link rel="stylesheet" href="~/css/custom.css" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
           rel="stylesheet" />
-    <style type="text/css">
-        .bootstrap-tagsinput .tag {
-            margin-right: 2px;
-            color: white !important;
-            background-color: #0d6efd;
-            padding: 0.2rem;
-        }
-
-        .bootstrap-tagsinput {
-            width: 100%;
-            margin-bottom: 0.75rem;
-            padding: 0.45rem;
-        }
-
-        table.dataTable thead > tr > th.sorting {
-            text-align: center !important;
-        }
-        .text-center {
-            text-align: center;
-        }
-
-        .text-right {
-            text-align: right;
-        }
-    </style>
 }
 <div class="my-4 d-flex justify-content-between align-items-center">
     <h3 class="b-900 ml-2 mb-0"><i class="fad fa-list-ul text-main" aria-hidden="true"></i>&nbsp;取引履歴</h3>
@@ -149,16 +124,16 @@
         <div class="card mb-md-0 mb-3">
             <div class="card-body">
                 <div class="row table-responsive">
-                    <table class="table mb-0 data-table">
+                    <table class="table mb-0 data-table table-striped table-bordered">
                         <thead>
-                            <tr>
-                                <th scope="col">会員番号</th>
-                                <th scope="col">顧客名</th>
-                                <th scope="col">小計</th>
-                                <th scope="col">利用ポイント</th>
-                                <th scope="col">合計</th>
-                                <th scope="col">還元ポイント</th>
-                                <th scope="col">登録日</th>
+                            <tr style="background-color: #7b7b7b; color: white;">
+                                <th scope="col" class="text-center">会員番号</th>
+                                <th scope="col" class="text-center">顧客名</th>
+                                <th scope="col" class="text-center">小計</th>
+                                <th scope="col" class="text-center">利用ポイント</th>
+                                <th scope="col" class="text-center">合計</th>
+                                <th scope="col" class="text-center">還元ポイント</th>
+                                <th scope="col" class="text-center">登録日</th>
                             </tr>
                         </thead>
                         <tbody>
