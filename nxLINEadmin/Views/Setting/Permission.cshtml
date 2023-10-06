@@ -35,7 +35,7 @@
         }
     </style>
 }
-<div class="row my-3">
+<div class="row my-2">
     @if (ViewBag.errorType == "error")
     {
         <div class="alert alert-danger alert-dismissible text-bg-danger border-0 fade show" role="alert" id="alert-show">
@@ -52,429 +52,86 @@
         </div>
     }
 </div>
-
-<ul class="nav nav-tabs nav-justified nav-bordered mb-3">
-    <li class="nav-item">
-        <a href="#home" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
-            <i class="mdi mdi-home-variant d-md-none d-block"></i>
-            <span class="d-none d-md-block">基本情報</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="#config" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-            <span class="d-none d-md-block">会員登録設定</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="#info" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-            <i class="mdi mdi-account-circle d-md-none d-block"></i>
-            <span class="d-none d-md-block">権限設定</span>
-        </a>
-    </li>
-</ul>
-<div class="tab-content">
-    <div class="tab-pane show active" id="home">
-        <form id="basic_info" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="Account.LineaccountId" type="hidden" />
-            <input asp-for="Account.LineaccountCode" type="hidden" />
-            <input asp-for="Account.LineaccountShortcode" type="hidden" />
-            <input asp-for="Account.LineaccountCreated" type="hidden" />
-            <input asp-for="Account.ProfileSetting" type="hidden" />
-            <div class="form-group row my-2">
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.LineaccountName" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input asp-for="Account.LineaccountName" class="form-control" />
-                            <span asp-validation-for="Account.LineaccountName" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.LineaccountEmail" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input asp-for="Account.LineaccountEmail" class="form-control" />
-                            <span asp-validation-for="Account.LineaccountEmail" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.EntryPoint" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="input-group flex-nowrap">
-                                <input asp-for="Account.EntryPoint" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-                                <span class="input-group-text" id="basic-addon1">ポイント</span>
-                            </div>
-                            <span asp-validation-for="Account.EntryPoint" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.StartRank" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="input-group flex-nowrap">
-                                <input asp-for="Account.StartRank" class="form-control" aria-label="Username" aria-describedby="basic-addon2">
-                                <span class="input-group-text" id="basic-addon2">％</span>
-                            </div>
-                            <span asp-validation-for="Account.StartRank" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.PointExpire" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="input-group flex-nowrap">
-                                <input asp-for="Account.PointExpire" class="form-control" aria-label="Username" aria-describedby="basic-addon3">
-                                <span class="input-group-text" id="basic-addon3">日</span>
-                            </div>
-                            <span asp-validation-for="Account.PointExpire" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.MembersCardColor" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="color" asp-for="Account.MembersCardColor" class="form-control" />
-                            <span asp-validation-for="Account.MembersCardColor" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.SmaregiContractId" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input asp-for="Account.SmaregiContractId" class="form-control" />
-                            <span asp-validation-for="Account.SmaregiContractId" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.MembersCardLiffId" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input asp-for="Account.MembersCardLiffId" class="form-control" />
-                            <span asp-validation-for="Account.MembersCardLiffId" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.LineChannelId" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input asp-for="Account.LineChannelId" class="form-control" />
-                            <span asp-validation-for="Account.LineChannelId" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.LineChannelSecret" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input asp-for="Account.LineChannelSecret" class="form-control" />
-                            <span asp-validation-for="Account.LineChannelSecret" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.LineChannelAccessToken" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input asp-for="Account.LineChannelAccessToken" class="form-control" />
-                            <span asp-validation-for="Account.LineChannelAccessToken" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.TalkMessage" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <textarea class="form-control" rows="3" asp-for="Account.TalkMessage">@Model.Account.TalkMessage</textarea>
-                            <span asp-validation-for="Account.TalkMessage" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.IsSmaregi" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="checkbox" id="switch3" data-switch="primary" asp-for="Account.IsSmaregi" />
-                            <label for="switch3" data-on-label="On" data-off-label="Off"></label>
-                            <span asp-validation-for="Account.IsSmaregi" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.Istalk" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="checkbox" id="switch0" data-switch="primary" asp-for="Account.Istalk" />
-                            <label for="switch0" data-on-label="On" data-off-label="Off"></label>
-                            <span asp-validation-for="Account.Istalk" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.IsProfile" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="checkbox" id="switch1" data-switch="primary" asp-for="Account.IsProfile" />
-                            <label for="switch1" data-on-label="On" data-off-label="Off"></label>
-                            <span asp-validation-for="Account.IsProfile" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.MembersCardIsUseCamera" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="checkbox" id="switch2" data-switch="primary" asp-for="Account.MembersCardIsUseCamera" />
-                            <label for="switch2" data-on-label="On" data-off-label="Off"></label>
-                            <span asp-validation-for="Account.MembersCardIsUseCamera" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.MembersCardDesignUrl" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <img src="@(Model.Account.MembersCardDesignUrl ?? nxLINEadmin.Controllers.SettingController.noImgUrl)" style="height:200px;" />
-                            <input class="form-control mt-2" type="file" name="cardDesign">
-                            <span asp-validation-for="Account.MembersCardDesignUrl" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label asp-for="Account.LineaccountLogoUrl" class="control-label"></label>
-                        </div>
-                        <div class="col-md-12">
-                            <img src="@(Model.Account.LineaccountLogoUrl ?? nxLINEadmin.Controllers.SettingController.noImgUrl)" style="height:200px;" />
-                            <input class="form-control mt-2" type="file" name="logoImg">
-                            <span asp-validation-for="Account.LineaccountLogoUrl" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div class="form-group row my-2">
-            <button class="btn btn-primary" id="basic_info_submit">保存</button>
-        </div>
+<div class="mt-3 d-flex justify-content-between align-items-center">
+    <h3 class="b-900 ml-2 mb-0"><i class="fa-solid fa-gear fa-lg text-main" aria-hidden="true"></i>&nbsp;権限設定</h3>
+    <div class="d-flex justify-content-start align-items-center">
     </div>
-    <div class="tab-pane" id="config">
-        <form id="saveForm">
-            <div class="row">
-                <div class="col-md-4 mx-0 pl-0">
-                    <label>登録フォーム</label>
-                    <br />
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1" name="form_types_1" value="1">
-                                <label class="custom-control-label" for="customCheck1">名前</label>
-                            </div>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="is_requireds[1]" data-switch="primary" value="1" id="formTypeSwitch1">
-                                <label data-on-label="必須" data-off-label="" for="formTypeSwitch1"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck11" name="form_types_2" value="1">
-                                <label class="custom-control-label" for="customCheck11">名前（フリガナ）</label>
-                            </div>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="is_requireds[2]" data-switch="primary" value="1" id="formTypeSwitch11">
-                                <label data-on-label="必須" data-off-label="" for="formTypeSwitch11"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="form_types_3" value="1">
-                                <label class="custom-control-label" for="customCheck2">電話番号</label>
-                            </div>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="is_requireds[3]" data-switch="primary" value="1" id="formTypeSwitch2">
-                                <label data-on-label="必須" data-off-label="" for="formTypeSwitch2"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="form_types_4" value="1">
-                                <label class="custom-control-label" for="customCheck3">メールアドレス</label>
-                            </div>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="is_requireds[4]" data-switch="primary" value="1" id="formTypeSwitch3">
-                                <label data-on-label="必須" data-off-label="" for="formTypeSwitch3"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="form_types_5" value="1">
-                                <label class="custom-control-label" for="customCheck4">生年月日</label>
-                            </div>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="is_requireds[5]" data-switch="primary" value="1" id="formTypeSwitch4">
-                                <label data-on-label="必須" data-off-label="" for="formTypeSwitch4"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="form_types_6" value="1">
-                                <label class="custom-control-label" for="customCheck5">性別</label>
-                            </div>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="is_requireds[6]" data-switch="primary" value="1" id="formTypeSwitch5">
-                                <label data-on-label="必須" data-off-label="" for="formTypeSwitch5"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck6" name="form_types_7" value="6">
-                                <label class="custom-control-label" for="customCheck6">住所</label>
-                            </div>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="is_requireds[7]" data-switch="primary" value="1" id="formTypeSwitch1">
-                                <label for="formTypeSwitch6" data-on-label="必須" data-off-label=""></label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <div class="form-group mb-2">
-                        <label for="">概要</label>
-                        <textarea class="form-control" name="user[register_form_overview]" id="user_register_form_overview"></textarea>
-                    </div>
-                    <label>追加回答フォーム</label><br>
-                    <button type="button" class="btn btn-info add-card"><i class="mdi mdi-plus me-1"></i> <span>追加</span> </button>
-                </div>
-            </div>
-            <hr />
-            <button type="button" class="btn btn-primary" id="saveBtn">保存</button>
-        </form>
-        <form asp-action="ConfigSave" asp-controller="setting" id="sendForm">
-            <input value="@Model.Account.LineaccountId" name="line_account_id" type="hidden" />
-            <input value="@Model.Account.ProfileSetting" name="profile_setting" id="profile_setting" type="hidden" />
-        </form>
+</div>
+<div class="container mt-2">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="font-weight-bold mb-0">権限管理</h5>
+        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"><i class="mdi mdi-account-multiple-plus-outline mdi-24px me-1"></i> <span>ユーザー追加</span> </button>
     </div>
-    <div class="tab-pane" id="info">
-        <div class="d-flex justify-content-between align-items-center">
-            <h5 class="font-weight-bold mb-0">権限管理</h5>
-            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"><i class="mdi mdi-account-multiple-plus-outline mdi-24px me-1"></i> <span>ユーザー追加</span> </button>
-        </div>
-        <table class="table table-hover table-centered mb-0 data-table">
-            <thead>
+    <table class="table table-hover table-centered mb-0 data-table">
+        <thead>
+            <tr>
+                <th>ログインID</th>
+                <th>ユーザー名</th>
+                <th>メールアドレス</th>
+                <th>権限</th>
+                <th>作成日</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var user in Model.Users)
+            {
                 <tr>
-                    <th>ログインID</th>
-                    <th>ユーザー名</th>
-                    <th>メールアドレス</th>
-                    <th>権限</th>
-                    <th>作成日</th>
-                    <th></th>
+                    <td>@user.UserLoginId</td>
+                    <td>@user.UserName</td>
+                    <td>@user.UserEmail</td>
+                    <td>@user.UserLineAccountRole</td>
+                    <td>@user.UserCreated.ToString("yyyy-MM-dd")</td>
+                    <td class="table-action text-center">
+                        <a href="/Setting/UserDelete?userID=@user.UserId" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach(var user in Model.Users)
-                {
-                    <tr>
-                        <td>@user.UserLoginId</td>
-                        <td>@user.UserName</td>
-                        <td>@user.UserEmail</td>
-                        <td>@user.UserLineAccountRole</td>
-                        <td>@user.UserCreated.ToString("yyyy-MM-dd")</td>
-                        <td class="table-action text-center">
-                            <a href="/Setting/UserDelete?userID=@user.UserId" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myLargeModalLabel">ユーザー追加</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form asp-action="UserSave" asp-controller="setting" method="post">
-                            <input asp-for="newUser.UserId" type="hidden">
-                            <input asp-for="newUser.Status" type="hidden" value="1">
-                            <div class="field form-group mt-2">
-                                <label for="">ログインID</label>
-                                <input asp-for="newUser.UserLoginId" class="form-control" autocomplete="email" value="" required>
-                            </div>
-                            <div class="field form-group mt-2">
-                                <label for="">ユーザー名</label>
-                                <input asp-for="newUser.UserName" class="form-control" autocomplete="email" value="" required>
-                            </div>
-                            <div class="field form-group mt-2">
-                                <label for="">メールアドレス</label>
-                                <input type="email" asp-for="newUser.UserEmail" class="form-control" autocomplete="email" value="" required>
-                            </div>
-                            <div class="field form-group mt-2">
-                                <label for="">権限</label>
-                                <select class="custom-select form-control" asp-for="newUser.UserLineAccountRole">
-                                    <option value="staff">スタッフ</option>
-                                </select>
-                                <small id="" class="form-text text-muted">スタッフは会員証を読み取りポイント処理のみ可能です。</small>
-                            </div>
-                            <div class="field form-group mt-2">
-                                <label>パスワード</label>
-                                <input type="password" asp-for="newUser.UserPwd" class="form-control" autocomplete="new-password" value="" required="">
-                            </div>
-                            <div class="field form-group mt-2">
-                                <label>パスワード(確認)</label>
-                                <input type="password" asp-for="newUser.UserRePwd" class="form-control" value="" required="">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-sm py-2 px-4 mt-2">追加</button>
-                        </form>
-                    </div>
+            }
+        </tbody>
+    </table>
+    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">ユーザー追加</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="UserSave" asp-controller="setting" method="post">
+                        <input asp-for="newUser.UserId" type="hidden">
+                        <input asp-for="newUser.Status" type="hidden" value="1">
+                        <div class="field form-group mt-2">
+                            <label for="">ログインID</label>
+                            <input asp-for="newUser.UserLoginId" class="form-control" autocomplete="email" value="" required>
+                        </div>
+                        <div class="field form-group mt-2">
+                            <label for="">ユーザー名</label>
+                            <input asp-for="newUser.UserName" class="form-control" autocomplete="email" value="" required>
+                        </div>
+                        <div class="field form-group mt-2">
+                            <label for="">メールアドレス</label>
+                            <input type="email" asp-for="newUser.UserEmail" class="form-control" autocomplete="email" value="" required>
+                        </div>
+                        <div class="field form-group mt-2">
+                            <label for="">権限</label>
+                            <select class="custom-select form-control" asp-for="newUser.UserLineAccountRole">
+                                <option value="staff">スタッフ</option>
+                            </select>
+                            <small id="" class="form-text text-muted">スタッフは会員証を読み取りポイント処理のみ可能です。</small>
+                        </div>
+                        <div class="field form-group mt-2">
+                            <label>パスワード</label>
+                            <input type="password" asp-for="newUser.UserPwd" class="form-control" autocomplete="new-password" value="" required="">
+                        </div>
+                        <div class="field form-group mt-2">
+                            <label>パスワード(確認)</label>
+                            <input type="password" asp-for="newUser.UserRePwd" class="form-control" value="" required="">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm py-2 px-4 mt-2">追加</button>
+                    </form>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

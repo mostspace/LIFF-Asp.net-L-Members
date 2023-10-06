@@ -35,41 +35,48 @@
         }
     </style>
 }
-<div class="row mt-2">
-    <div class="col-auto d-flex align-items-center">
-        データ件数
-    </div>
-    <div class="col-auto">
-        <select class="form-select">
-            <option value="10">10 件</option>
-            <option value="25">25 件</option>
-            <option value="50">50 件</option>
-        </select>
-    </div>
-    <div class="col-auto d-flex align-items-center">
-        1 - 10
-    </div>
-    <div class="col-auto">
-        <nav>
-            <ul class="pagination mb-0">
-                <li class="page-item">
-                    <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+<div class="my-4 d-flex justify-content-between align-items-center">
+    <h3 class="b-900 ml-2 mb-0"><i class="fad fa-users text-main" aria-hidden="true"></i>&nbsp;顧客一覧</h3>
+    <div class="d-flex justify-content-start align-items-center">
     </div>
 </div>
+
 <div class="row mt-3">
     <div class="col-md-4">
         <div class="card mb-md-0 mb-3">
             <div class="card-body">
+                <div class="row mt-2">
+                    <div class="col-auto d-flex align-items-center">
+                        データ件数
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select">
+                            <option value="10">10 件</option>
+                            <option value="25">25 件</option>
+                            <option value="50">50 件</option>
+                        </select>
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                        1 - 10
+                    </div>
+                    <div class="col-auto">
+                        <nav>
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <hr>
                 <div class="mb-2">
                     <label for="member_code" class="form-label">会員番号</label>
                     <input type="text" id="member_code" class="form-control">
@@ -179,12 +186,7 @@
     <div class="col-md-8">
         <div class="card mb-md-0 mb-3">
             <div class="card-body">
-                <div class="row">
-                    <button type="button" class="btn btn-primary col-auto me-2">変更</button>
-                    <button type="button" class="btn btn-primary col-auto me-2">一括 LINE 送信</button>
-                    <button type="button" class="btn btn-primary col-auto me-2">ダウンロード</button>
-                </div>
-                <div class="row mt-2 table-responsive">
+                <div class="row table-responsive">
                     <table class="table mb-0 data-table">
                         <thead>
                             <tr>

@@ -75,6 +75,84 @@ namespace nxLINEadmin.Controllers
             vm.Users = users;
             return View(vm);
         }
+        public async Task<IActionResult> Membership(string errorType = "", string errorMsg = "")
+        {
+            User currentUser = await _unitOfWork.UserRepos.FindUserAsync(_userID);
+            int lineAccountID = currentUser.UserLineAccountID ?? 0;
+            LineAccount lineAccount;
+
+            if (lineAccountID == 0)
+            {
+                lineAccount = new LineAccount();
+                lineAccount.LineaccountCode = "1";
+                lineAccount.LineaccountShortcode = "1";
+                lineAccount.LineaccountEmail = currentUser.UserEmail;
+                lineAccount.LineaccountCreated = DateTime.Now;
+
+                _unitOfWork.LineAccountRepos.Add(lineAccount);
+                _unitOfWork.Complete();
+
+                int newLineID = lineAccount.LineaccountId;
+                currentUser.UserLineAccountID = newLineID;
+                currentUser.UserUpdated = DateTime.Now;
+                _unitOfWork.UserRepos.Update(currentUser);
+                _unitOfWork.Complete();
+            }
+            else
+            {
+                lineAccount = _unitOfWork.LineAccountRepos.GetById(lineAccountID);
+            }
+
+            SettingViewModel vm = new SettingViewModel();
+            vm.Account = lineAccount;
+            vm.newUser = new RegisterUserViewModel();
+
+            ViewBag.errorType = errorType; 
+            ViewBag.errorMsg = errorMsg;
+
+            List<User> users = _unitOfWork.UserRepos.GetAll().ToList();
+            vm.Users = users;
+            return View(vm);
+        }
+        public async Task<IActionResult> Permission(string errorType = "", string errorMsg = "")
+        {
+            User currentUser = await _unitOfWork.UserRepos.FindUserAsync(_userID);
+            int lineAccountID = currentUser.UserLineAccountID ?? 0;
+            LineAccount lineAccount;
+
+            if (lineAccountID == 0)
+            {
+                lineAccount = new LineAccount();
+                lineAccount.LineaccountCode = "1";
+                lineAccount.LineaccountShortcode = "1";
+                lineAccount.LineaccountEmail = currentUser.UserEmail;
+                lineAccount.LineaccountCreated = DateTime.Now;
+
+                _unitOfWork.LineAccountRepos.Add(lineAccount);
+                _unitOfWork.Complete();
+
+                int newLineID = lineAccount.LineaccountId;
+                currentUser.UserLineAccountID = newLineID;
+                currentUser.UserUpdated = DateTime.Now;
+                _unitOfWork.UserRepos.Update(currentUser);
+                _unitOfWork.Complete();
+            }
+            else
+            {
+                lineAccount = _unitOfWork.LineAccountRepos.GetById(lineAccountID);
+            }
+
+            SettingViewModel vm = new SettingViewModel();
+            vm.Account = lineAccount;
+            vm.newUser = new RegisterUserViewModel();
+
+            ViewBag.errorType = errorType; 
+            ViewBag.errorMsg = errorMsg;
+
+            List<User> users = _unitOfWork.UserRepos.GetAll().ToList();
+            vm.Users = users;
+            return View(vm);
+        }
 
         [HttpPost]
         public IActionResult ConfigSave(int line_account_id, string profile_setting)
