@@ -245,7 +245,7 @@
                         columns: [
                             {
                                 data: null, render: function (data, type, row) {
-                                    return '<input type="checkbox" class="row-check" />';
+                                    return '<input type="checkbox" class="row-check" line-id="' + row.member_lineid + '" />';
                                 }, className: "text-center"
                             },
                             { data: 'member_code', className: "text-center" },
@@ -275,8 +275,14 @@
             })
         })
         csv_download.onclick = () => {
+            let checked_rows = $('tbody > tr > td > input[type=checkbox]:checked');
+            let lineIds = [];
+            checked_rows.each(function() {
+                lineIds.push($(this).attr('line-id'));
+            });
+            console.log('https://localhost:7116/api/Members/lineid_csv_download?' + $.param({lineIds: lineIds}, true));
             $.ajax({
-                url: 'https://localhost:7116/api/Members/lineid_csv_download',
+                url: 'https://localhost:7116/api/Members/lineid_csv_download?' + $.param({lineIds: lineIds}, true),
                 type: 'GET',
                 success: function(response) {
                     let data = response;

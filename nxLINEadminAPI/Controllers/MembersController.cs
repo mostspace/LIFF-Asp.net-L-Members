@@ -141,9 +141,15 @@ namespace nxLINEadminAPI.Controllers
 
         // GET: api/Members/lineid_csv_download
         [HttpGet("lineid_csv_download")]
-        public IActionResult LineIdCSVDownload()
+        public IActionResult LineIdCSVDownload([FromQuery] List<string> lineIds)
         {
-            string csvContent = "Name,Email,Phone\nJohn Doe,johndoe@example.com,1234567890\nJane Smith,janesmith@example.com,0987654321";
+            string csvContent = "";
+            foreach (var lineId in lineIds)
+            {
+                csvContent += lineId + ',';
+            }
+
+            Console.WriteLine(csvContent);
 
             byte[] csvBytes = Encoding.UTF8.GetBytes(csvContent);
 
