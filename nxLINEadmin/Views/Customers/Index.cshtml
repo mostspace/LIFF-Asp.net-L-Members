@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="~/assets/vendor/daterangepicker/daterangepicker.css" type="text/css" />
     <link rel="stylesheet" href="~/css/custom.css" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
+    <link href="~/css/bootstrap-tagsinput.css"
           rel="stylesheet" />
 }
 <div class="my-4 d-flex justify-content-between align-items-center">
@@ -136,7 +136,7 @@
                         <label for="tag_include" class="form-label mb-0">タグ(含む)</label><br />
                     </div>
                     <div class="col-md-9">
-                        <input type="text" id="tag_include" data-role="tagsinput">
+                        <input type="text" class="form-control" id="tag_include" data-role="tagsinput">
                     </div>
                 </div>
                 <div class="mb-2 row">
@@ -144,7 +144,7 @@
                         <label for="tag_except" class="form-label mb-0">タグ(除く)</label><br />
                     </div>
                     <div class="col-md-9">
-                        <input type="text" id="tag_except" data-role="tagsinput">
+                        <input type="text" class="form-control" id="tag_except" data-role="tagsinput">
                     </div>
                 </div>
                 <div class="mb-2 text-right">
@@ -159,14 +159,15 @@
                 <div class="row table-responsive">
                     <table class="table mb-0 data-table table-striped table-bordered" style="width: 100%">
                         <thead>
-                            <tr style="background-color: #7b7b7b; color: white;">
+                            <tr style="background-color: #313a46; color: white;">
                                 <th scope="col" class="text-center"><input type="checkbox" id="table-all-check"></th>
                                 <th scope="col" class="text-center">会員番号</th>
                                 <th scope="col" class="text-center">名前</th>
                                 <th scope="col" class="text-center">ランク</th>
                                 <th scope="col" class="text-center">ポイント</th>
+                                <th scope="col" class="text-center">注記</th>
                                 <th scope="col" class="text-center">登録日</th>
-                                <th scope="col" class="text-center">LINEを送る</th>
+                                <th scope="col" class="text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,6 +177,83 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Edit Note Modal -->
+<div class="modal fade" id="editNoteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editNoteModalTitle">メモを編集する</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input class="d-none" id="edit_note_id">
+        <textarea class="form-control" id="editNoteMoalText" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="saveNote" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Member Modal -->
+<div class="modal fade" id="editMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editMemberModalTitle">メンバーを編集する</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input class="d-none" id="edit_member_id">
+        <div class="mb-2">
+            <label for="editMemberName" class="form-label" required><span style="color: red;">*</span> 名前</label>
+            <input type="text" id="editMemberName" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="editMemberName" class="form-label" required><span style="color: red;">*</span> 名前</label>
+            <input type="text" id="editMemberName" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="editMemberCompanyName" class="form-label" required><span style="color: red;">*</span> 会社名</label>
+            <input type="text" id="editMemberCompanyName" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="editMemberPhoneNumber" class="form-label" required><span style="color: red;">*</span> 電話番号</label>
+            <input type="text" id="editMemberPhoneNumber" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="editMemberMailAddress" class="form-label">メールアドレス</label>
+            <input type="text" id="editMemberMailAddress" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="editMemberButton" class="btn btn-primary">はい</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Member Modal -->
+<div class="modal fade" id="deleteMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteMemberModalTitle">情報</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input class="d-none" id="delete_member_id">
+        <p style="font-size: 20px;">メンバーを削除しますか?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">いいえ</button>
+        <button type="button" id="deleteMemberButton" class="btn btn-primary">はい</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 @section Scripts {
@@ -258,12 +336,18 @@
                             { data: 'member_hold_point', className: "text-center" },
                             {
                                 data: null, render: function (data, type, row) {
+                                    return noteButton(row.member_note, row.member_id);
+                                }, className: "text-center" 
+                            },
+                            {
+                                data: null, render: function (data, type, row) {
                                     return formatDate(row.member_join_date);
                                 }, className: "text-center"
                             },
                             {
                                 data: null, render: function (data, type, row) {
-                                    return '<i class="fa-2x fa-brands fa-line"></i>';
+                                    return userInfoEditDelete(row.member_id);
+                                    return '';
                                 }, className: "text-center"
                             }
                         ],
@@ -274,13 +358,98 @@
                 alert(e)
             })
         })
+        editMemberButton.onclick = () => {
+            $.ajax({
+                url: `https://localhost:7116/api/Members/edit_member/${$('#edit_member_id').val()}`,
+                type: 'GET',
+                data: {
+                    'tel': $('#editMemberPhoneNumber').val(),
+                    'email': "s" + $('#editMemberMailAddress').val()
+                },
+                success: function(response) {
+                    $('#editMemberModal').modal('hide');
+                    btn_search.click();
+                    $.toast({
+                        heading: '成功',
+                        text: 'メンバーは正常に変更されました。',
+                        position: 'top-right',
+                        showHideTransition: 'slide',
+                        icon: 'success'
+                    })
+                },
+                error: function(xhr, status, error) {
+                    $.toast({
+                        heading: '失敗',
+                        text: 'メンバーは変更されなかった。',
+                        position: 'top-right',
+                        showHideTransition: 'slide',
+                        icon: 'error'
+                    })
+                }
+            });
+        }
+        deleteMemberButton.onclick = () => {
+            $.ajax({
+                url: `https://localhost:7116/api/Members/${$('#delete_member_id').val()}`,
+                type: 'DELETE',
+                success: function(response) {
+                    $('#deleteMemberModal').modal('hide');
+                    btn_search.click();
+                    $.toast({
+                        heading: '成功',
+                        text: 'メンバーは正常に削除されました。',
+                        position: 'top-right',
+                        showHideTransition: 'slide',
+                        icon: 'success'
+                    })
+                },
+                error: function(xhr, status, error) {
+                    $.toast({
+                        heading: '失敗',
+                        text: 'メンバーは削除されていませんでした。',
+                        position: 'top-right',
+                        showHideTransition: 'slide',
+                        icon: 'error'
+                    })
+                }
+            });
+        }
+        saveNote.onclick = () => {
+            $.ajax({
+                url: `https://localhost:7116/api/Members/edit_note`,
+                type: 'GET',
+                data: {
+                    'id': $('#edit_note_id').val(),
+                    'note': "s" + $('#editNoteMoalText').val()
+                },
+                success: function(response) {
+                    $.toast({
+                        heading: '成功',
+                        text: 'メンバーノートは正常に変更されました。',
+                        position: 'top-right',
+                        showHideTransition: 'slide',
+                        icon: 'success'
+                    })
+                    $('#editNoteModal').modal('hide');
+                    btn_search.click();
+                },
+                error: function(xhr, status, error) {
+                    $.toast({
+                        heading: '失敗',
+                        text: '会員メモは変更ありません。',
+                        position: 'top-right',
+                        showHideTransition: 'slide',
+                        icon: 'error'
+                    })
+                }
+            });
+        }
         csv_download.onclick = () => {
             let checked_rows = $('tbody > tr > td > input[type=checkbox]:checked');
             let lineIds = [];
             checked_rows.each(function() {
                 lineIds.push($(this).attr('line-id'));
             });
-            console.log('https://localhost:7116/api/Members/lineid_csv_download?' + $.param({lineIds: lineIds}, true));
             $.ajax({
                 url: 'https://localhost:7116/api/Members/lineid_csv_download?' + $.param({lineIds: lineIds}, true),
                 type: 'GET',
@@ -332,6 +501,50 @@
             }).catch(e => {
                 alert(e)
             })
+        }
+
+        function editMember(member_id) {
+            $.ajax({
+                url: 'https://localhost:7116/api/Members/'+member_id,
+                type: 'GET',
+                success: function(response) {
+                    $('#edit_member_id').val(member_id);
+                    $('#editMemberMailAddress').val(response.member_email);
+                    $('#editMemberPhoneNumber').val(response.member_tel);
+                }
+            });
+            $('#editMemberModal').modal('show');
+        }
+
+        function deleteMember(member_id) {
+            $('#delete_member_id').val(member_id);
+            $('#deleteMemberModal').modal('show');
+        }
+
+        function showEditNoteModal(member_id) {
+            $.ajax({
+                url: 'https://localhost:7116/api/Members/'+member_id,
+                type: 'GET',
+                success: function(response) {
+                    $('#edit_note_id').val(response.member_id);
+                    $('#editNoteMoalText').val(response.member_note);
+                }
+            });
+            $('#editNoteModal').modal('show');
+        }
+
+        function noteButton(noteStr, member_id) {
+            if (noteStr == '')
+                return '<button class="btn btn-outline-secondary btn-sm" onclick="showEditNoteModal('+member_id+')"><i class="fa fa-plus"></i></button>'
+            else
+                return '<button class="btn btn-outline-secondary btn-sm" onclick="showEditNoteModal('+member_id+')"><i class="fa fa-pen"></i></button>'
+        }
+
+        function userInfoEditDelete(member_id) {
+            return  `<button class="btn btn-outline-secondary btn-sm me-1"><i class="fa fa-message-dots"></i></button>` + 
+                    `<button class="btn btn-outline-secondary btn-sm me-1" onclick="editMember(${member_id})"><i class="fa fa-pen"></i></button>` + 
+                    `<button class="btn btn-outline-danger btn-sm" onclick="deleteMember(${member_id})"><i class="fa fa-trash"></i></button>`;
+            
         }
         
         function formatDate(inputDateStr) {

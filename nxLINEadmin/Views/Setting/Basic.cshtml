@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="~/assets/vendor/daterangepicker/daterangepicker.css" type="text/css" />
     <link rel="stylesheet" href="~/css/custom.css" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
+    <link href="~/css/bootstrap-tagsinput.css"
           rel="stylesheet" />
     <style type="text/css">
         .bootstrap-tagsinput .tag {
@@ -66,7 +66,7 @@
         <input asp-for="Account.LineaccountCreated" type="hidden" />
         <input asp-for="Account.ProfileSetting" type="hidden" />
         <div class="form-group row my-0">
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.LineaccountName" class="control-label"></label>
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.LineaccountEmail" class="control-label"></label>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.EntryPoint" class="control-label"></label>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.StartRank" class="control-label"></label>
@@ -116,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.PointExpire" class="control-label"></label>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.MembersCardColor" class="control-label"></label>
@@ -141,7 +141,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.SmaregiContractId" class="control-label"></label>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.MembersCardLiffId" class="control-label"></label>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 mt-3">
+            <div class="col-md-4 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.LineChannelId" class="control-label"></label>
@@ -174,7 +174,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 mt-3">
+            <div class="col-md-6 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.LineChannelSecret" class="control-label"></label>
@@ -185,7 +185,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 mt-3">
+            <div class="col-md-6 col-sm-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.LineChannelAccessToken" class="control-label"></label>
@@ -196,7 +196,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 mt-3">
+            <div class="col-md-12 mt-3">
                 <div class="row">
                     <div class="col-md-12">
                         <label asp-for="Account.TalkMessage" class="control-label"></label>
@@ -207,8 +207,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 mt-3">
-                <div class="row">
+            <div class="col-md-3 mt-3">
+                <div class="row text-center">
                     <div class="col-md-12">
                         <label asp-for="Account.IsSmaregi" class="control-label"></label>
                     </div>
@@ -219,8 +219,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 mt-3">
-                <div class="row">
+            <div class="col-md-3 mt-3">
+                <div class="row text-center">
                     <div class="col-md-12">
                         <label asp-for="Account.Istalk" class="control-label"></label>
                     </div>
@@ -231,8 +231,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 mt-3">
-                <div class="row">
+            <div class="col-md-3 mt-3">
+                <div class="row text-center">
                     <div class="col-md-12">
                         <label asp-for="Account.IsProfile" class="control-label"></label>
                     </div>
@@ -243,8 +243,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 mt-3">
-                <div class="row">
+            <div class="col-md-3 mt-3">
+                <div class="row text-center">
                     <div class="col-md-12">
                         <label asp-for="Account.MembersCardIsUseCamera" class="control-label"></label>
                     </div>
@@ -255,8 +255,8 @@
                     </div>
                 </div>
             </div>
-            <div class="offset-1 col-4 mt-3">
-                <div class="row">
+            <div class="col-md-6 col-sm-12 mt-3">
+                <div class="row text-center">
                     <div class="col-md-12">
                         <label asp-for="Account.MembersCardDesignUrl" class="control-label"></label>
                     </div>
@@ -269,8 +269,8 @@
                     </div>
                 </div>
             </div>
-            <div class="offset-2 col-4 mt-3">
-                <div class="row">
+            <div class="col-md-6 col-sm-12 mt-3">
+                <div class="row text-center">
                     <div class="col-md-12">
                         <label asp-for="Account.LineaccountLogoUrl" class="control-label"></label>
                     </div>
@@ -286,8 +286,8 @@
         </div>
     </form>
     <div class="form-group row my-4">
-        <div class="offset-5 col-2">
-            <button class="btn btn-primary" style="width: 100%;" id="basic_info_submit">保存</button>
+        <div class="text-center">
+            <button class="btn btn-primary" style="width: 150px;" id="basic_info_submit">保存</button>
         </div>
     </div>
 </div>

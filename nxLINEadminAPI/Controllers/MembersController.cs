@@ -158,6 +158,27 @@ namespace nxLINEadminAPI.Controllers
             return File(csvBytes, "text/csv");            
         } 
 
+        // GET: api/Members/edit_note
+        [HttpGet("edit_note")]
+        public async Task<ActionResult> EditNote(int id, string note)
+        {
+            var member = await _context.Member.FindAsync(id);
+            if (member == null)
+            {
+                return NotFound();
+            }
+            member.member_note = note.Substring(1);
+            try
+            {
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An error occurred while updating the member note.");
+            }
+        }
+
         // GET: api/Members/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Member>> GetMember(int id)
@@ -174,6 +195,32 @@ namespace nxLINEadminAPI.Controllers
             }
 
             return member;
+        }
+
+        // GET: api/Members/edit_member/5
+        [HttpGet("edit_member/{id}")]
+        public async Task<ActionResult<Member>> EditMember(int id, string tel, string email)
+        {
+          if (_context.Member == null)
+          {
+              return NotFound();
+          }
+            var member = await _context.Member.FindAsync(id);
+
+            if (member == null)
+            {
+                return NotFound();
+            }
+
+            member.member_tel = tel;
+            member.member_email = email.Substring(1);
+
+            try {
+                await _context.SaveChangesAsync();
+                return NoContent();
+            } catch (Exception) {
+                return StatusCode(500, "An error occurred while updating the member note.");
+            }
         }
 
         // PUT: api/Members/5
