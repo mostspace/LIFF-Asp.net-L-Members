@@ -18,162 +18,122 @@
 </div>
 
 <div class="row mt-3">
-    <div class="col-md-4">
-        <div class="card mb-md-0 mb-3">
-            <div class="card-body">
-                <div class="mb-2 row">
-                    <div class="col-md-3">
-                        <label for="member_code" class="form-label">会員番号</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" id="member_code" class="form-control">
-                    </div>
+    <div class="card mb-md-0 mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="mb-2 col-md-3 col-sm-12">
+                    <label for="member_code" class="form-label mb-0">会員番号</label>
+                    <input type="text" id="member_code" class="form-control">
                 </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="member_name" class="form-label mb-0">名前</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" id="member_name" class="form-control">
-                    </div>
+                <div class="mb-2 col-md-3 col-sm-12">
+                    <label for="member_name" class="form-label mb-0">名前</label>
+                    <input type="text" id="member_name" class="form-control">
                 </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="kana" class="form-label mb-0">カナ</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" id="kana" class="form-control">
-                    </div>
+                <div class="mb-2 col-md-3 col-sm-12">
+                    <label for="phone" class="form-label mb-0">電話番号</label>
+                    <input type="text" id="phone" class="form-control">
                 </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="simpleinput" class="form-label mb-0">設年月日</label>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="row gy-2 gx-2 align-items-center">
-                            <div class="col-4">
-                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="year">
-                                    <div class="input-group-text">年</div>
-                                </div>
+                <div class="mb-2 col-md-3 col-sm-12">
+                    <label for="email" class="form-label mb-0">メールアドレス</label>
+                    <input type="text" id="email" class="form-control">
+                </div>
+                <div class="mb-2 col-md-4 col-sm-12">
+                    <label for="simpleinput" class="form-label mb-0">設年月日</label>
+                    <div class="row gy-2 gx-2 align-items-center">
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="year">
+                                <div class="input-group-text">年</div>
                             </div>
-                            <div class="col-4">
-                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="month">
-                                    <div class="input-group-text">月</div>
-                                </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="month">
+                                <div class="input-group-text">月</div>
                             </div>
-                            <div class="col-4">
-                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="day">
-                                    <div class="input-group-text">日</div>
-                                </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="day">
+                                <div class="input-group-text">日</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="simpleinput" class="form-label mb-0">性別</label>
+                <div class="mb-2 col-md-4 col-sm-12">
+                    <label for="kana" class="form-label mb-0">カナ</label>
+                    <input type="text" id="kana" class="form-control">
+                </div>
+                <div class="mb-2 col-md-4 col-sm-12">
+                    <label for="join_date" class="form-label mb-0">登録日</label>
+                    <input type="text" class="form-control date" id="join_date" value="" data-toggle="date-picker" data-cancel-class="btn-warning">
+                </div>
+                <div class="mb-2 col-md-3 col-sm-12">
+                    <label for="point" class="form-label mb-0">ポイント</label>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="number" id="point_start" name="point" class="form-control">
+                        </div>
+                        <div class="col-md-2 align-self-center text-center">
+                            <label class="text-center"> ~ </label>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="number" id="point_end" name="point" class="form-control">
+                        </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="row gy-2 gx-2 align-items-center">
-                            <div class="col-auto">
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="gender1">
-                                    <label class="form-check-label" for="gender1">男</label>
-                                </div>
+                </div>
+                <div class="mb-2 col-md-3 col-sm-12">
+                    <label for="tag_include" class="form-label mb-0">タグ(含む)</label><br />
+                    <input type="text" class="form-control" id="tag_include" data-role="tagsinput">
+                </div>
+                <div class="mb-2 col-md-3 col-sm-12">
+                    <label for="tag_except" class="form-label mb-0">タグ(除く)</label><br />
+                    <input type="text" class="form-control" id="tag_except" data-role="tagsinput">
+                </div>
+                <div class="mb-2 col-md-3 col-sm-12">
+                    <label for="simpleinput" class="form-label mb-0">性別</label>
+                    <div class="row mt-1">
+                        <div class="col-auto">
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="gender1">
+                                <label class="form-check-label" for="gender1">男</label>
                             </div>
-                            <div class="col-auto">
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" id="gender2">
-                                    <label class="form-check-label" for="gender2">女</label>
-                                </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="gender2">
+                                <label class="form-check-label" for="gender2">女</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="phone" class="form-label mb-0">電話番号</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" id="phone" class="form-control">
-                    </div>
-                </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="email" class="form-label mb-0">メールアドレス</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" id="email" class="form-control">
-                    </div>
-                </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="join_date" class="form-label mb-0">登録日</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control date" id="join_date" value="" data-toggle="date-picker" data-cancel-class="btn-warning">
-                    </div>
-                </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="point" class="form-label mb-0">ポイント</label>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="number" id="point_start" name="point" class="form-control">
-                    </div>
-                    <div class="col-md-1 align-self-center">
-                        <label class="text-center"> ~ </label>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="number" id="point_end" name="point" class="form-control">
-                    </div>
-                </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="tag_include" class="form-label mb-0">タグ(含む)</label><br />
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="tag_include" data-role="tagsinput">
-                    </div>
-                </div>
-                <div class="mb-2 row">
-                    <div class="col-md-3 align-self-center">
-                        <label for="tag_except" class="form-label mb-0">タグ(除く)</label><br />
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="tag_except" data-role="tagsinput">
-                    </div>
-                </div>
-                <div class="mb-2 text-right">
-                    <button type="button" class="btn btn-outline-success rounded-pill" id="btn_search"><i class="mdi mdi-account-search"></i> 検索</button>
-                </div>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-outline-success rounded-pill" id="btn_search" style="width: 150px;"><i class="mdi mdi-account-search"></i> 検索</button>
             </div>
         </div>
     </div>
-    <div class="col-md-8">
-        <div class="card mb-md-0 mb-3">
-            <div class="card-body">
-                <div class="row table-responsive">
-                    <table class="table mb-0 data-table table-striped table-bordered" style="width: 100%">
-                        <thead>
-                            <tr style="background-color: #313a46; color: white;">
-                                <th scope="col" class="text-center"><input type="checkbox" id="table-all-check"></th>
-                                <th scope="col" class="text-center">会員番号</th>
-                                <th scope="col" class="text-center">名前</th>
-                                <th scope="col" class="text-center">ランク</th>
-                                <th scope="col" class="text-center">ポイント</th>
-                                <th scope="col" class="text-center">注記</th>
-                                <th scope="col" class="text-center">登録日</th>
-                                <th scope="col" class="text-center"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
+</div>
+<div class="row mt-3">
+    <div class="card mb-md-0 mb-3">
+        <div class="card-body">
+            <div class="row table-responsive">
+                <table class="table mb-0 data-table table-striped table-bordered" style="width: 100%">
+                    <thead>
+                        <tr style="background-color: #313a46; color: white;">
+                            <th scope="col" class="text-center"><input type="checkbox" id="table-all-check"></th>
+                            <th scope="col" class="text-center">会員番号</th>
+                            <th scope="col" class="text-center">名前</th>
+                            <th scope="col" class="text-center">ランク</th>
+                            <th scope="col" class="text-center">ポイント</th>
+                            <th scope="col" class="text-center">注記</th>
+                            <th scope="col" class="text-center">登録日</th>
+                            <th scope="col" class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
