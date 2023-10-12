@@ -199,7 +199,7 @@ namespace nxLINEadminAPI.Controllers
 
         // GET: api/Members/edit_member/5
         [HttpGet("edit_member/{id}")]
-        public async Task<ActionResult<Member>> EditMember(int id, string tel, string email)
+        public async Task<ActionResult<Member>> EditMember(int id, string code, string name, string kana, string tel, string email)
         {
           if (_context.Member == null)
           {
@@ -212,6 +212,9 @@ namespace nxLINEadminAPI.Controllers
                 return NotFound();
             }
 
+            member.member_code = code;
+            member.member_lastname = name;
+            member.member_lastname_kana = kana;
             member.member_tel = tel;
             member.member_email = email.Substring(1);
 

@@ -60,7 +60,11 @@
 <div class="container mt-3">
     <form id="saveForm">
         <div class="row">
-            <div class="col-md-4 mx-0 pl-0">
+            <div class="col-md-4 col-sm-12 mx-0 pl-0">
+                <div class="form-group mb-2">
+                    <label for="">概要</label>
+                    <textarea class="form-control" name="user[register_form_overview]" id="user_register_form_overview"></textarea>
+                </div>
                 <label>登録フォーム</label>
                 <br />
                 <ul class="list-group">
@@ -123,19 +127,15 @@
                             <label class="custom-control-label" for="customCheck6">住所</label>
                         </div>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_requireds[7]" data-switch="primary" value="1" id="formTypeSwitch1">
+                            <input type="checkbox" name="is_requireds[7]" data-switch="primary" value="1" id="formTypeSwitch6">
                             <label for="formTypeSwitch6" data-on-label="必須" data-off-label=""></label>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-8">
-                <div class="form-group mb-2">
-                    <label for="">概要</label>
-                    <textarea class="form-control" name="user[register_form_overview]" id="user_register_form_overview"></textarea>
-                </div>
+            <div class="col-md-8 col-sm-12">
                 <label>追加回答フォーム</label><br>
-                <button type="button" class="btn btn-info add-card"><i class="mdi mdi-plus me-1"></i> <span>追加</span> </button>
+                <button type="button" class="btn btn-info add-card mt-2"><i class="mdi mdi-plus me-1"></i> <span>追加</span> </button>
             </div>
         </div>
         <hr />

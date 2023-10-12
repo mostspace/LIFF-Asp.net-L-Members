@@ -30,7 +30,7 @@
         } catch (e) {
             console.log(e)
         }
-    }, 1500)
+    }, 1500);
 
     let addCard = document.querySelector('.add-card');
     addCard.addEventListener('click', function (e) {
@@ -39,41 +39,41 @@
         // Calculate the length of the cards array
         var number = cards.length + 9;
         let newElement = document.createElement('div');
-        newElement.className = 'card my-3';
+        newElement.className = 'card mt-0 mb-2';
+        newElement.style = 'border: 1px solid #ddd;';
         newElement.innerHTML =
-            `<div class="card-body">
+            `<div class="card-body" data-id="${number}">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-sm-12 mb-2">
                                 <input class="form-control" name="questions_${number}" placeholder="質問文">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-12 mb-2">
                                 <select class="form-select answer-type" name="answer_types_${number}">
-                                    <option value="1" selected>選択肢単独</option>
-                                    <option value="2">選択肢複数</option>
-                                    <option value="3">テキスト</option>
-                                    <option value="4">段落</option>
-                                    <option value="5">日付</option>
+                                    <option value="1" selected>テキスト</option>
+                                    <option value="2">段落</option>
+                                    <option value="3">選択肢単独</option>
+                                    <option value="4">選択肢複数</option>
+                                    <option value="5">落ちる</option>
+                                    <option value="6">ファイルのアップロード</option>
+                                    <option value="7">日付</option>
+                                    <option value="8">時間</option>
                                 </select>
                             </div>
-                            <div class="col-md-12 mt-2">
+                            <div class="col-md-12 mb-2">
                                 <input class="form-control" name="placeholder_${number}" placeholder="プレイスホルダー">
                             </div>
-                            <div class="col-md-12 mt-2">
+                            <div class="col-md-12 mb-2">
                                 <input class="form-control" name="hint_${number}" placeholder="ヒント">
                             </div>
                         </div>
-                        <div class="form-group mt-4 d-flex justify-content-start">
-                            <input type="text" class="form-control w-75 options-${number}" name="options_${number}_1" value="選択肢1">
-                            <button type="button" class="mx-2 rounded-pill icon-px add-option z-1 btn btn-primary" id="${number}">
-                                <i class="mdi mdi-24px mdi-plus px-1"></i>
-                            </button>
+                        <div name="dynamic_content">
                         </div>
                     </div>
                     <div class="card-footer py-2">
                         <div class="row">
                             <div class="col-6 mt-2">
                                 <div class="custom-control custom-switch">
-                                    <input type="checkbox" name="is_required[${number}]" value="1" data-switch="primary" id="customSwitch${number}">
+                                    <input type="checkbox" name="is_required[${number}]" value="1" data-switch="primary" id="customSwitch${number}" >
                                     <label for="customSwitch${number}" data-on-label="必須" data-off-label=""></label>
                                 </div>
                             </div>
@@ -101,28 +101,37 @@
 
         if (target.classList.contains('answer-type')) {
             if (target.value == "3" || target.value == "4" || target.value == "5") {
-                console.log(target.closest(".card-body"));
-                hideFormGroups(target.closest(".card-body"));
-            } else {
                 showFormGroups(target.closest(".card-body"));
+            } else {
+                hideFormGroups(target.closest(".card-body"));
             }
         }
     });
 
+    
+    // this is a function to remove a subsection
     function hideFormGroups(parentElement) {
-        var formGroups = parentElement.getElementsByClassName("form-group");
-        for (var i = 0; i < formGroups.length; i++) {
-            formGroups[i].classList.add("hidden");
+        var dynamic_content = parentElement.querySelector("[name='dynamic_content']");
+        while (dynamic_content.firstChild) {
+            dynamic_content.removeChild(dynamic_content.firstChild);
         }
     }
 
+    // this is a function to add a new subsection
     function showFormGroups(parentElement) {
-        var formGroups = parentElement.getElementsByClassName("form-group");
-        for (var i = 0; i < formGroups.length; i++) {
-            formGroups[i].classList.remove("hidden");
-        }
+        var number = parentElement.getAttribute('data-id');
+        hideFormGroups(parentElement);
+        $(parentElement).find("div[name='dynamic_content']").html(`
+            <div class="form-group mb-2 d-flex justify-content-start">
+                <input type="text" class="form-control w-75 options-${number}" name="options_${number}_1" value="選択肢1">
+                <button type="button" class="mx-2 rounded-pill icon-px add-option z-1 btn btn-primary" id="${number}">
+                    <i class="mdi mdi-24px mdi-plus px-1"></i>
+                </button>
+            </div>
+        `);
     }
 
+    // this is a function to add more option element to subsection
     document.addEventListener('click', function (event) {
         var target = event.target;
         if (target.classList.contains('add-option') || target.parentElement.classList.contains('add-option')) {
@@ -131,8 +140,8 @@
             var options = document.getElementsByClassName(`options-${number}`);
 
             var cnt = options.length + 1;
-            target.closest(".card-body").insertAdjacentHTML('beforeend',
-                `<div class="form-group mt-4 d-flex justify-content-start">
+            target.closest(".card-body").querySelector("[name='dynamic_content']").insertAdjacentHTML('beforeend',
+                `<div class="form-group mb-2 d-flex justify-content-start">
                     <input type="text" class="form-control w-75 options-${number}" name="options_${number}_${cnt}" value="">
                     <button type="button" class="mx-2 rounded-pill icon-px remove-option z-1 btn btn-light">
                         <i class="mdi mdi-24px mdi-close-thick px-1"></i>
@@ -174,25 +183,31 @@
                 let dataTypeIndex = formData.get(`answer_types_${ordinal}`);
                 switch (dataTypeIndex) {
                     case "1":
-                        dataType = 'radio';
-                        break;
-                    case "2":
-                        dataType = 'check';
-                        break;
-                    case "3":
                         dataType = 'text';
                         break;
-                    case "4":
+                    case "2":
                         dataType = 'textarea';
                         break;
-                    case "5":
-                        dataType = 'date';
-                        break;
-                    default:
+                    case "3":
                         dataType = 'radio';
                         break;
+                    case "4":
+                        dataType = 'checkbox';
+                        break;
+                    case "5":
+                        dataType = 'dropdown';
+                        break;
+                    case "6":
+                        dataType = 'upload';
+                        break;
+                    case "7":
+                        dataType = 'date';
+                        break;
+                    case "8":
+                        dataType = 'time';
+                        break;
                 }
-
+                alert(dataType);
                 question['data-type'] = dataType;
                 if (dataTypeIndex == 3 || dataTypeIndex == 4 || dataTypeIndex == 5) {
                     question['select-item'] = '';

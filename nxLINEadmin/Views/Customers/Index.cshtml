@@ -169,19 +169,19 @@
       <div class="modal-body">
         <input class="d-none" id="edit_member_id">
         <div class="mb-2">
-            <label for="editMemberName" class="form-label" required><span style="color: red;">*</span> 名前</label>
+            <label for="editMemberName" class="form-label"><span style="color: red;">*</span> 会員番号</label>
+            <input type="text" id="editMemberCode" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label for="editMemberName" class="form-label"><span style="color: red;">*</span> 名前</label>
             <input type="text" id="editMemberName" class="form-control" required>
         </div>
         <div class="mb-2">
-            <label for="editMemberName" class="form-label" required><span style="color: red;">*</span> 名前</label>
-            <input type="text" id="editMemberName" class="form-control" required>
+            <label for="editMemberCompanyName" class="form-label"><span style="color: red;">*</span> カナ</label>
+            <input type="text" id="editMemberKana" class="form-control" required>
         </div>
         <div class="mb-2">
-            <label for="editMemberCompanyName" class="form-label" required><span style="color: red;">*</span> 会社名</label>
-            <input type="text" id="editMemberCompanyName" class="form-control" required>
-        </div>
-        <div class="mb-2">
-            <label for="editMemberPhoneNumber" class="form-label" required><span style="color: red;">*</span> 電話番号</label>
+            <label for="editMemberPhoneNumber" class="form-label"><span style="color: red;">*</span> 電話番号</label>
             <input type="text" id="editMemberPhoneNumber" class="form-control" required>
         </div>
         <div class="mb-2">
@@ -319,10 +319,25 @@
             })
         })
         editMemberButton.onclick = () => {
+            if ($('#editMemberCode').val() == '')
+                $('#editMemberCode').addClass('border-danger');
+            else $('#editMemberCode').removeClass('border-danger');
+            if ($('#editMemberName').val() == '')
+                $('#editMemberName').addClass('border-danger');
+            else $('#editMemberName').removeClass('border-danger');
+            if ($('#editMemberKana').val() == '')
+                $('#editMemberKana').addClass('border-danger');
+            else $('#editMemberKana').removeClass('border-danger');
+            if ($('#editMemberPhoneNumber').val() == '')
+                $('#editMemberPhoneNumber').addClass('border-danger');
+            else $('#editMemberPhoneNumber').removeClass('border-danger');
             $.ajax({
                 url: `https://localhost:7116/api/Members/edit_member/${$('#edit_member_id').val()}`,
                 type: 'GET',
                 data: {
+                    'code': $('#editMemberCode').val(),
+                    'name': $('#editMemberName').val(),
+                    'kana': $('#editMemberKana').val(),
                     'tel': $('#editMemberPhoneNumber').val(),
                     'email': "s" + $('#editMemberMailAddress').val()
                 },
@@ -469,6 +484,9 @@
                 type: 'GET',
                 success: function(response) {
                     $('#edit_member_id').val(member_id);
+                    $('#editMemberCode').val(response.member_code);
+                    $('#editMemberName').val(response.member_lastname);
+                    $('#editMemberKana').val(response.member_lastname_kana);
                     $('#editMemberMailAddress').val(response.member_email);
                     $('#editMemberPhoneNumber').val(response.member_tel);
                 }
