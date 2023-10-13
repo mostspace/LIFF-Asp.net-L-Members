@@ -394,7 +394,7 @@ namespace nxLINEadminAPI.Migrations
 
                     b.ToTable("user", (string)null);
                 });
-            
+
 #pragma warning restore 612, 618
         }
     }
