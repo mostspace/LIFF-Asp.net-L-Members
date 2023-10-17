@@ -40,6 +40,62 @@ namespace nxLINEadminAPI.Controllers
         }
 
         // GET: api/Members
+        [HttpGet("get_setting")]
+        public async Task<ActionResult<MemberRegSetting>> GetSetting()
+        {
+            var cnt = await _context.MemberRegSettings.CountAsync();
+            if (cnt == 0)
+            {
+                return NotFound();
+            }
+
+            var memberReg = await _context.MemberRegSettings.FirstOrDefaultAsync();
+
+            return memberReg;
+        }
+
+        //Get: api/Members
+        [HttpGet("save_setting")]
+        public async Task<ActionResult> SaveSetting(bool is_name, bool is_furigana, bool is_tel, bool is_email, bool is_birthday,
+                                                    bool is_gender, bool is_address, string overview)
+        {
+            var cnt = await _context.MemberRegSettings.CountAsync();
+            if (cnt == 0)
+            {
+                var memberReg = new MemberRegSetting();
+                memberReg.member_reg_is_name = is_name;
+                memberReg.member_reg_is_furigana = is_furigana;
+                memberReg.member_reg_is_tel = is_tel;
+                memberReg.member_reg_is_email = is_email;
+                memberReg.member_reg_is_address = is_address;
+                memberReg.member_reg_is_birthday = is_birthday;
+                memberReg.member_reg_is_gender = is_gender;
+                memberReg.overview = overview.Substring(1);
+                _context.MemberRegSettings.Add(memberReg);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            var membership_registration_setting = await _context.MemberRegSettings.FirstOrDefaultAsync();
+            membership_registration_setting.member_reg_is_name = is_name;
+            membership_registration_setting.member_reg_is_furigana = is_furigana;
+            membership_registration_setting.member_reg_is_tel = is_tel;
+            membership_registration_setting.member_reg_is_email = is_email;
+            membership_registration_setting.member_reg_is_address = is_address;
+            membership_registration_setting.member_reg_is_birthday = is_birthday;
+            membership_registration_setting.member_reg_is_gender = is_gender;
+            membership_registration_setting.overview = overview.Substring(1);
+            try
+            {
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An error occurred while updating the member note.");
+            }
+        }
+
+        // GET: api/Members
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Member>>> SearchMember(String? member_code, String? code,
             String? name, String? kana, int? year, int? month, int? day, String? gender, String? phone,

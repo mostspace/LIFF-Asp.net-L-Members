@@ -23,14 +23,14 @@
     }
     
     
-    setTimeout(function () {
-        try {
-            let alertEle = document.getElementById('alert-show');
-            alertEle.classList.add('hidden');
-        } catch (e) {
-            console.log(e)
-        }
-    }, 1500);
+    // setTimeout(function () {
+    //     try {
+    //         let alertEle = document.getElementById('alert-show');
+    //         alertEle.classList.add('hidden');
+    //     } catch (e) {
+    //         console.log(e)
+    //     }
+    // }, 1500);
 
     let addCard = document.querySelector('.add-card');
     addCard.addEventListener('click', function (e) {
@@ -162,113 +162,114 @@
         }
     });
 
-    let saveBtn = document.getElementById('saveBtn');
-    saveBtn.addEventListener('click', (e) => {
-        let form = document.getElementById('saveForm');
-        let formData = new FormData(form);
-        let jsonData = [];
-        for (var [name, value] of formData.entries()) {
-            if (name.search("questions_") !== -1) {
-                let ordinal = name.split("_")[1];
-                let question = {};
-                question['label'] = value;
-                question['data-type'] = formData.get(`answer_types_${ordinal}`);
-                question['data-no'] = ordinal;
-                question['ordinal'] = ordinal;
-                question['required'] = formData.get(`is_required[${ordinal}]`) == 1 ? true : false;
-                question['visivility'] = true;
-                question['placeholder'] = formData.get(`placeholder_${ordinal}`);
-                question['hint'] = formData.get(`hint_${ordinal}`);
-                let dataType = 'text';
-                let dataTypeIndex = formData.get(`answer_types_${ordinal}`);
-                switch (dataTypeIndex) {
-                    case "1":
-                        dataType = 'text';
-                        break;
-                    case "2":
-                        dataType = 'textarea';
-                        break;
-                    case "3":
-                        dataType = 'radio';
-                        break;
-                    case "4":
-                        dataType = 'checkbox';
-                        break;
-                    case "5":
-                        dataType = 'dropdown';
-                        break;
-                    case "6":
-                        dataType = 'upload';
-                        break;
-                    case "7":
-                        dataType = 'date';
-                        break;
-                    case "8":
-                        dataType = 'time';
-                        break;
-                }
-                alert(dataType);
-                question['data-type'] = dataType;
-                if (dataTypeIndex == 3 || dataTypeIndex == 4 || dataTypeIndex == 5) {
-                    question['select-item'] = '';
-                } else {
-                    let options = document.getElementsByClassName(`options-${ordinal}`);
-                    let optionsValue = [];
-                    Array.from(options).forEach(option => {
-                        optionsValue.push(option.value);
-                    });
-                    question['select-item'] = optionsValue.join(',');
-                }
-                jsonData.push(question);
-            }
-            if (name.search("form_types_") !== -1) {
-                let ordinal = name.split("_")[2];
-                let question = {};
+    // here is save setting function
+    // let saveBtn = document.getElementById('saveBtn');
+    // saveBtn.addEventListener('click', (e) => {
+    //     let form = document.getElementById('saveForm');
+    //     let formData = new FormData(form);
+    //     let jsonData = [];
+    //     for (var [name, value] of formData.entries()) {
+    //         if (name.search("questions_") !== -1) {
+    //             let ordinal = name.split("_")[1];
+    //             let question = {};
+    //             question['label'] = value;
+    //             question['data-type'] = formData.get(`answer_types_${ordinal}`);
+    //             question['data-no'] = ordinal;
+    //             question['ordinal'] = ordinal;
+    //             question['required'] = formData.get(`is_required[${ordinal}]`) == 1 ? true : false;
+    //             question['visivility'] = true;
+    //             question['placeholder'] = formData.get(`placeholder_${ordinal}`);
+    //             question['hint'] = formData.get(`hint_${ordinal}`);
+    //             let dataType = 'text';
+    //             let dataTypeIndex = formData.get(`answer_types_${ordinal}`);
+    //             switch (dataTypeIndex) {
+    //                 case "1":
+    //                     dataType = 'text';
+    //                     break;
+    //                 case "2":
+    //                     dataType = 'textarea';
+    //                     break;
+    //                 case "3":
+    //                     dataType = 'radio';
+    //                     break;
+    //                 case "4":
+    //                     dataType = 'checkbox';
+    //                     break;
+    //                 case "5":
+    //                     dataType = 'dropdown';
+    //                     break;
+    //                 case "6":
+    //                     dataType = 'upload';
+    //                     break;
+    //                 case "7":
+    //                     dataType = 'date';
+    //                     break;
+    //                 case "8":
+    //                     dataType = 'time';
+    //                     break;
+    //             }
+    //             alert(dataType);
+    //             question['data-type'] = dataType;
+    //             if (dataTypeIndex == 3 || dataTypeIndex == 4 || dataTypeIndex == 5) {
+    //                 question['select-item'] = '';
+    //             } else {
+    //                 let options = document.getElementsByClassName(`options-${ordinal}`);
+    //                 let optionsValue = [];
+    //                 Array.from(options).forEach(option => {
+    //                     optionsValue.push(option.value);
+    //                 });
+    //                 question['select-item'] = optionsValue.join(',');
+    //             }
+    //             jsonData.push(question);
+    //         }
+    //         if (name.search("form_types_") !== -1) {
+    //             let ordinal = name.split("_")[2];
+    //             let question = {};
 
-                question['data-no'] = ordinal;
-                question['ordinal'] = ordinal;
-                question['required'] = formData.get(`is_requireds[${ordinal}]`) == 1 ? true : false;
-                question['visivility'] = true;
-                question['placeholder'] = '';
-                question['hint'] = '';
-                question['data-type'] = 'text';
+    //             question['data-no'] = ordinal;
+    //             question['ordinal'] = ordinal;
+    //             question['required'] = formData.get(`is_requireds[${ordinal}]`) == 1 ? true : false;
+    //             question['visivility'] = true;
+    //             question['placeholder'] = '';
+    //             question['hint'] = '';
+    //             question['data-type'] = 'text';
 
-                switch (ordinal) {
-                    case 1:
-                        question['label'] = '名前';
-                        break;
-                    case 2:
-                        question['label'] = '名前（フリガナ）';
-                        break;
-                    case 3:
-                        question['label'] = '電話番号';
-                        break;
-                    case 4:
-                        question['label'] = 'メールアドレス';
-                        break;
-                    case 5:
-                        question['label'] = '生年月日';
-                        question['data-type'] = 'date';
-                        break;
-                    case 6:
-                        question['label'] = '性別';
-                        break;
-                    case 7:
-                        question['label'] = '住所';
-                        break;
-                    default:
-                        break;
-                }
+    //             switch (ordinal) {
+    //                 case 1:
+    //                     question['label'] = '名前';
+    //                     break;
+    //                 case 2:
+    //                     question['label'] = '名前（フリガナ）';
+    //                     break;
+    //                 case 3:
+    //                     question['label'] = '電話番号';
+    //                     break;
+    //                 case 4:
+    //                     question['label'] = 'メールアドレス';
+    //                     break;
+    //                 case 5:
+    //                     question['label'] = '生年月日';
+    //                     question['data-type'] = 'date';
+    //                     break;
+    //                 case 6:
+    //                     question['label'] = '性別';
+    //                     break;
+    //                 case 7:
+    //                     question['label'] = '住所';
+    //                     break;
+    //                 default:
+    //                     break;
+    //             }
 
-                jsonData.push(question);
-            }
-        }
+    //             jsonData.push(question);
+    //         }
+    //     }
 
-        let jsonString = JSON.stringify(jsonData);
+    //     let jsonString = JSON.stringify(jsonData);
 
-        profileSetting.value = jsonString;
-        submitLineAccountSetting();
-    });
+    //     profileSetting.value = jsonString;
+    //     submitLineAccountSetting();
+    // });
 });
 
 function addHtml(item) {

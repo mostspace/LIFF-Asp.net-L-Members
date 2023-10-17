@@ -58,12 +58,12 @@
     </div>
 </div>
 <div class="container mt-3">
-    <form asp-action="" asp-controller="setting">
+    <form asp-action="">
         <div class="row">
             <div class="col-md-4 col-sm-12 mx-0 pl-0">
                 <div class="form-group mb-2">
                     <label for="">概要</label>
-                    <textarea class="form-control" rows="4" name="user[register_form_overview]" id="user_register_form_overview"></textarea>
+                    <textarea class="form-control" rows="4" name="user[register_form_overview]" id="overview"></textarea>
                 </div>
                 <label>登録フォーム</label>
                 <br />
@@ -73,8 +73,8 @@
                             <label class="custom-control-label" for="customCheck1">名前</label>
                         </div>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_requireds[1]" data-switch="primary" value="1" id="formTypeSwitch1">
-                            <label data-on-label="必須" data-off-label="" for="formTypeSwitch1"></label>
+                            <input type="checkbox" id="is_name" data-switch="primary" value="1">
+                            <label data-on-label="必須" data-off-label="" for="is_name"></label>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -82,8 +82,8 @@
                             <label class="custom-control-label" for="customCheck11">名前（フリガナ）</label>
                         </div>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_requireds[2]" data-switch="primary" value="1" id="formTypeSwitch11">
-                            <label data-on-label="必須" data-off-label="" for="formTypeSwitch11"></label>
+                            <input type="checkbox" id="is_furigana" data-switch="primary" value="1">
+                            <label data-on-label="必須" data-off-label="" for="is_furigana"></label>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -91,8 +91,8 @@
                             <label class="custom-control-label" for="customCheck2">電話番号</label>
                         </div>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_requireds[3]" data-switch="primary" value="1" id="formTypeSwitch2">
-                            <label data-on-label="必須" data-off-label="" for="formTypeSwitch2"></label>
+                            <input type="checkbox" id="is_tel" data-switch="primary" value="1">
+                            <label data-on-label="必須" data-off-label="" for="is_tel"></label>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -100,8 +100,8 @@
                             <label class="custom-control-label" for="customCheck3">メールアドレス</label>
                         </div>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_requireds[4]" data-switch="primary" value="1" id="formTypeSwitch3">
-                            <label data-on-label="必須" data-off-label="" for="formTypeSwitch3"></label>
+                            <input type="checkbox" id="is_email" data-switch="primary" value="1">
+                            <label data-on-label="必須" data-off-label="" for="is_email"></label>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -109,8 +109,8 @@
                             <label class="custom-control-label" for="customCheck4">生年月日</label>
                         </div>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_requireds[5]" data-switch="primary" value="1" id="formTypeSwitch4">
-                            <label data-on-label="必須" data-off-label="" for="formTypeSwitch4"></label>
+                            <input type="checkbox" id="is_birthday" data-switch="primary" value="1">
+                            <label data-on-label="必須" data-off-label="" for="is_birthday"></label>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -118,17 +118,17 @@
                             <label class="custom-control-label" for="customCheck5">性別</label>
                         </div>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_requireds[6]" data-switch="primary" value="1" id="formTypeSwitch5">
-                            <label data-on-label="必須" data-off-label="" for="formTypeSwitch5"></label>
+                            <input type="checkbox" id="is_gender" data-switch="primary" value="1">
+                            <label data-on-label="必須" data-off-label="" for="is_gender"></label>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="custom-control custom-checkbox">
-                            <label class="custom-control-label" for="customCheck6">住所</label>
+                            <label class="custom-control-label" for="customCheck5">住所</label>
                         </div>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" name="is_requireds[7]" data-switch="primary" value="1" id="formTypeSwitch6">
-                            <label for="formTypeSwitch6" data-on-label="必須" data-off-label=""></label>
+                            <input type="checkbox" id="is_address" data-switch="primary" value="1">
+                            <label data-on-label="必須" data-off-label="" for="is_address"></label>
                         </div>
                     </li>
                 </ul>
@@ -149,6 +149,62 @@
 
 @section Scripts {
     <script src="~/js/setting.js" ></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: `https://localhost:7116/api/Members/get_setting`,
+                type: 'GET',
+                success: function(response) {
+                    $('#is_name').prop('checked', response.member_reg_is_name);
+                    $('#is_furigana').prop('checked', response.member_reg_is_furigana);
+                    $('#is_tel').prop('checked', response.member_reg_is_tel);
+                    $('#is_email').prop('checked', response.member_reg_is_email);
+                    $('#is_birthday').prop('checked', response.member_reg_is_birthday);
+                    $('#is_gender').prop('checked', response.member_reg_is_gender);
+                    $('#is_address').prop('checked', response.member_reg_is_address);
+                    $('#overview').html(response.overview);
+                },
+                error: function(xhr, status, error) {
+                    alert('failed');
+                }
+            });
+            saveBtn.onclick = () => {
+                $.ajax({
+                    url: `https://localhost:7116/api/Members/save_setting`,
+                    type: 'GET',
+                    data: {
+                        'is_name': $('#is_name').is(":checked"),
+                        'is_furigana': $('#is_furigana').is(":checked"),
+                        'is_tel': $('#is_tel').is(":checked"),
+                        'is_email': $('#is_email').is(":checked"),
+                        'is_birthday': $('#is_birthday').is(":checked"),
+                        'is_gender': $('#is_gender').is(":checked"),
+                        'is_address': $('#is_address').is(":checked"),
+                        'overview': 's' + $('#overview').val()
+                    },
+                    success: function(response) {
+                        $.toast({
+                            heading: '成功',
+                            text: 'データは正常に保存されました。',
+                            position: 'top-right',
+                            showHideTransition: 'slide',
+                            icon: 'success'
+                        })
+                    },
+                    error: function(xhr, status, error) {
+                        $.toast({
+                            heading: '失敗',
+                            text: 'データの保存に失敗しました。',
+                            position: 'top-right',
+                            showHideTransition: 'slide',
+                            icon: 'error'
+                        })
+                    }
+                });
+
+            }
+        });
+    </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

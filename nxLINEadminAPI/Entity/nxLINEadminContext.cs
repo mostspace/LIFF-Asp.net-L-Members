@@ -19,6 +19,7 @@ namespace nxLINEadminAPI.Entity
         
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<LineAccount> LineAccounts { get; set; }
+        public virtual DbSet<MemberRegSetting> MemberRegSettings { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
